@@ -33,11 +33,12 @@
                         </div>
                     @endif
 
-
                     <table
                         class="min-w-full mt-8 border-collapse border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg">
                         <thead>
                             <tr class="bg-gray-200 dark:bg-gray-700 text-left">
+                                <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">No</th>
+                                <!-- Tambahkan kolom untuk nomor -->
                                 <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">Judul</th>
                                 <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">Pengarang</th>
                                 <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">Tahun</th>
@@ -48,6 +49,9 @@
                             @foreach ($books as $book)
                                 <tr
                                     class="hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300 text-left">
+                                    <!-- Gunakan $loop->iteration untuk menampilkan nomor urut -->
+                                    <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-600">
+                                        {{ $loop->iteration }}</td>
                                     <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-600">
                                         {{ $book->title }}</td>
                                     <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-600">
