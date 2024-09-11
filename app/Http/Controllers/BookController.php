@@ -44,12 +44,12 @@ class BookController extends Controller
         ]);
 
         $book->update($request->all());
-        return redirect()->route('books.index')->with('success', 'Buku berhasil diperbarui.');
+        return redirect()->route('books.index')->with('edit', 'Buku berhasil diperbarui.');
     }
 
     public function destroy(Book $book)
     {
         $book->delete();
-        return redirect()->route('books.index')->with('success', 'Buku berhasil dihapus.');
+        return redirect()->route('books.index')->with('delete', 'Buku berhasil dihapus.');
     }
 }

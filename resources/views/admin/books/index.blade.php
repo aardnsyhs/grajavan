@@ -15,12 +15,24 @@
                         Tambah Buku
                     </a>
 
-                    @if (session('success'))
+                    @php
+                        $alertType = session('success')
+                            ? 'bg-green-500'
+                            : (session('edit')
+                                ? 'bg-yellow-500'
+                                : (session('delete')
+                                    ? 'bg-red-500'
+                                    : ''));
+                        $alertMessage = session('success') ?? (session('edit') ?? session('delete'));
+                    @endphp
+
+                    @if ($alertMessage)
                         <div id="success-alert"
-                            class="bg-green-500 text-white font-bold rounded-lg p-4 mt-6 shadow-lg opacity-0 animate-fade-in">
-                            {{ session('success') }}
+                            class="text-white font-bold rounded-lg p-4 mt-6 shadow-lg opacity-0 animate-fade-in {{ $alertType }}">
+                            {{ $alertMessage }}
                         </div>
                     @endif
+
 
                     <table
                         class="min-w-full mt-8 border-collapse border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg">
@@ -44,12 +56,10 @@
                                         {{ $book->year }}</td>
                                     <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-600">
                                         <div class="flex space-x-2">
-                                            <!-- Tombol Edit -->
                                             <a href="{{ route('books.edit', $book->id) }}"
                                                 class="w-20 text-center bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded shadow-lg transform hover:scale-105 transition-transform duration-300">
                                                 Edit
                                             </a>
-                                            <!-- Tombol Hapus -->
                                             <form action="{{ route('books.destroy', $book->id) }}" method="POST"
                                                 style="display:inline-block;">
                                                 @csrf
