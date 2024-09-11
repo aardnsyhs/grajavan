@@ -37,11 +37,30 @@
                         class="min-w-full mt-8 border-collapse border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg">
                         <thead>
                             <tr class="bg-gray-200 dark:bg-gray-700 text-left">
-                                <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">No</th>
-                                <!-- Tambahkan kolom untuk nomor -->
-                                <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">Judul</th>
-                                <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">Pengarang</th>
-                                <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">Tahun</th>
+                                <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">
+                                    <a href="{{ request()->fullUrlWithQuery(['sort' => 'id', 'direction' => request('direction') == 'asc' ? 'desc' : 'asc']) }}"
+                                        class="font-bold">
+                                        No
+                                    </a>
+                                </th>
+                                <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">
+                                    <a href="{{ request()->fullUrlWithQuery(['sort' => 'title', 'direction' => request('direction') == 'asc' ? 'desc' : 'asc']) }}"
+                                        class="font-bold">
+                                        Judul
+                                    </a>
+                                </th>
+                                <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">
+                                    <a href="{{ request()->fullUrlWithQuery(['sort' => 'author', 'direction' => request('direction') == 'asc' ? 'desc' : 'asc']) }}"
+                                        class="font-bold">
+                                        Pengarang
+                                    </a>
+                                </th>
+                                <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">
+                                    <a href="{{ request()->fullUrlWithQuery(['sort' => 'year', 'direction' => request('direction') == 'asc' ? 'desc' : 'asc']) }}"
+                                        class="font-bold">
+                                        Tahun
+                                    </a>
+                                </th>
                                 <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">Aksi</th>
                             </tr>
                         </thead>
@@ -49,7 +68,6 @@
                             @foreach ($books as $book)
                                 <tr
                                     class="hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300 text-left">
-                                    <!-- Gunakan $loop->iteration untuk menampilkan nomor urut -->
                                     <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-600">
                                         {{ $loop->iteration }}</td>
                                     <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-600">
@@ -61,7 +79,7 @@
                                     <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-600">
                                         <div class="flex space-x-2">
                                             <a href="{{ route('books.edit', $book->id) }}"
-                                                class="w-20 text-center bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded shadow-lg transform hover:scale-105 transition-transform duration-300">
+                                                class="w-20 text-center bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded shadow-lg">
                                                 Edit
                                             </a>
                                             <form action="{{ route('books.destroy', $book->id) }}" method="POST"
@@ -69,7 +87,7 @@
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit"
-                                                    class="w-20 text-center bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded shadow-lg transform hover:scale-105 transition-transform duration-300">
+                                                    class="w-20 text-center bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded shadow-lg">
                                                     Hapus
                                                 </button>
                                             </form>

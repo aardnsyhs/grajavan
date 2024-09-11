@@ -7,9 +7,18 @@ use Illuminate\Http\Request;
 
 class BookController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $books = Book::all();
+        $sort = $request->query('sort', 'id');
+        $direction = $request->query('direction', 'asc');
+
+        $allowedSorts = ['id', 'title', 'author', 'year'];
+        if (!in_array($sort, $allowedSorts)) {
+            $sort = 'id';
+        }
+
+        $books = Book::orderBy($sort, $direction)->get();
+
         return view('admin.books.index', compact('books'));
     }
 
