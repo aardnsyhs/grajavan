@@ -1,4 +1,5 @@
 <x-app-layout>
+    @vite(['resources/css/style.css', 'resources/js/script.js'])
     <x-slot name="header">
         <h2 class="font-semibold text-2xl text-gray-800 dark:text-gray-200 leading-tight">
             {{ __('Daftar Buku') }}
@@ -16,7 +17,7 @@
 
                     @if (session('success'))
                         <div id="success-alert"
-                            class="bg-green-500 text-white font-bold rounded-lg p-4 mt-4 shadow-lg opacity-0 animate-fade-in">
+                            class="bg-green-500 text-white font-bold rounded-lg p-4 mt-6 shadow-lg opacity-0 animate-fade-in">
                             {{ session('success') }}
                         </div>
                     @endif
@@ -68,45 +69,4 @@
             </div>
         </div>
     </div>
-
-    <style>
-        .animate-fade-in {
-            animation: fade-in 1s forwards;
-        }
-
-        @keyframes fade-in {
-            0% {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-
-            100% {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-    </style>
-
-    <script>
-        function removeAlertAfterTimeout(alertId, timeout) {
-            const alertElement = document.getElementById(alertId);
-            if (!alertElement) return;
-
-            setTimeout(() => {
-                fadeOut(alertElement);
-            }, timeout);
-        }
-
-        function fadeOut(element) {
-            element.style.transition = "opacity 1s ease, transform 1s ease";
-            element.style.opacity = "0";
-            element.style.transform = "translateY(-20px)";
-
-            setTimeout(() => {
-                element.remove();
-            }, 1000);
-        }
-
-        removeAlertAfterTimeout('success-alert', 2500);
-    </script>
 </x-app-layout>
