@@ -17,7 +17,7 @@ class BookController extends Controller
             $sort = 'id';
         }
 
-        $books = Book::orderBy($sort, $direction)->get();
+        $books = Book::orderBy($sort, $direction)->paginate(10);
 
         return view('admin.books.index', compact('books'));
     }

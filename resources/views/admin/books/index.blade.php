@@ -72,7 +72,7 @@
                                 <tr
                                     class="hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300 text-left">
                                     <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-600">
-                                        {{ $loop->iteration }}</td>
+                                        {{ ($books->currentPage() - 1) * $books->perPage() + $loop->iteration }}</td>
                                     <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-600">
                                         {{ $book->title }}</td>
                                     <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-600">
@@ -111,6 +111,9 @@
                             @endforeach
                         </tbody>
                     </table>
+                    <div class="mt-6">
+                        {{ $books->links() }}
+                    </div>
                 </div>
             </div>
         </div>
