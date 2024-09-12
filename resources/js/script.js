@@ -39,5 +39,41 @@ function fadeOut(element) {
     }, 1000);
 }
 
-// Panggil fungsi untuk menghilangkan alert setelah 2,5 detik
 removeAlertAfterTimeout('success-alert', 2500);
+
+document.getElementById('search').addEventListener('input', function(e) {
+    const query = e.target.value.toLowerCase();
+
+    const rows = document.querySelectorAll('#book-list tr');
+    let found = false;
+
+    rows.forEach(function(row) {
+        const title = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+        const author = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+        const year = row.querySelector('td:nth-child(4)').textContent.toLowerCase();
+
+        if (title.includes(query) || author.includes(query) || year.includes(query)) {
+            row.style.display = '';
+            found = true;
+        } else {
+            row.style.display = 'none';
+        }
+    });
+
+    const noResultsText = document.getElementById('no-results');
+    const tableWrapper = document.getElementById('table-wrapper');
+    const pagination = document.getElementById('pagination');
+    const tableHead = document.getElementById('table-head');
+
+    if (found) {
+        noResultsText.classList.add('hidden');
+        tableWrapper.classList.remove('hidden');
+        pagination.classList.remove('hidden');
+        tableHead.classList.remove('hidden');
+    } else {
+        noResultsText.classList.remove('hidden');
+        tableWrapper.classList.add('hidden');
+        pagination.classList.add('hidden');
+        tableHead.classList.add('hidden');
+    }
+});
