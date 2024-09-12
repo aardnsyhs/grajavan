@@ -42,24 +42,27 @@ function fadeOut(element) {
 removeAlertAfterTimeout('success-alert', 2500);
 
 document.getElementById('search').addEventListener('input', function(e) {
-    const query = e.target.value.toLowerCase();
+    const query = e.target.value.trim().toLowerCase();
 
     const rows = document.querySelectorAll('#book-list tr');
-    let found = false;
+    let hasResults = false;
 
     rows.forEach(function(row) {
-        const title = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
-        const author = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
-        const year = row.querySelector('td:nth-child(4)').textContent.toLowerCase();
+        const [title, author, year] = [
+            row.querySelector('td:nth-child(2)').textContent.toLowerCase(),
+            row.querySelector('td:nth-child(3)').textContent.toLowerCase(),
+            row.querySelector('td:nth-child(4)').textContent.toLowerCase()
+        ];
 
-        if (title.includes(query) || author.includes(query) || year.includes(query)) {
-            row.style.display = '';
-            found = true;
-        } else {
-            row.style.display = 'none';
-        }
+        const isVisible = title.includes(query) || author.includes(query) || year.includes(query);
+        row.style.display = isVisible ? '' : 'none';
+        hasResults = hasResults || isVisible;
     });
 
+    toggleSearchResults(hasResults);
+});
+
+function toggleSearchResults(found) {
     const noResultsText = document.getElementById('no-results');
     const tableWrapper = document.getElementById('table-wrapper');
     const pagination = document.getElementById('pagination');
@@ -76,4 +79,4 @@ document.getElementById('search').addEventListener('input', function(e) {
         pagination.classList.add('hidden');
         tableHead.classList.add('hidden');
     }
-});
+}
