@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class BookFactory extends Factory
 {
+    protected static $index = 0;
     /**
      * Define the model's default state.
      *
@@ -29,6 +30,14 @@ class BookFactory extends Factory
             ['title' => 'The Lord of the Rings', 'author' => 'J.R.R. Tolkien', 'year' => 1954],
         ];
 
-        return $this->faker->randomElement($books);
+        $book = $books[self::$index];
+
+        self::$index++;
+
+        if (self::$index >= count($books)) {
+            self::$index = 0;
+        }
+
+        return $book;
     }
 }
