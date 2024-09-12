@@ -12,6 +12,8 @@ class Book extends Model
 
     protected $keyType = 'string';
 
+    protected $fillable = ["title", "author", "year", ];
+
     public $incrementing = false;
 
     protected static function boot() {
