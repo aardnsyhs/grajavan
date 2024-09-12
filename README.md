@@ -71,14 +71,14 @@ Aplikasi Laravel sekarang berjalan di `http://127.0.0.1:8000` atau URL lain yang
 
 ### 9. Install Dependencies Frontend
 
-Proyek ini menggunakan frontend yang membutuhkan Node.js, jalankan perintah berikut untuk menginstall dependencies frontend:
+Proyek ini menggunakan frontend yang membutuhkan Node.js, jalankan perintah berikut untuk menginstall dependencies frontend dengan yarn:
 
 ```bash
-npm install
+yarn install
 ```
 Setelah itu, Anda bisa menjalankan:
 ```bash
-npm run dev
+yarn dev
 ```
 Untuk menjalankan development server dan meng-compile asset frontend.
 
