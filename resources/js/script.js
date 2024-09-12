@@ -4,13 +4,14 @@ document.querySelectorAll('.delete-book-button').forEach(function(button) {
     button.addEventListener('click', function() {
         const form = this.closest('form');
         Swal.fire({
-            title: "Are you sure?",
-            text: "You won't be able to revert this!",
+            title: "Apakah Anda yakin?",
+            text: "Data ini tidak dapat dikembalikan setelah dihapus!",
             icon: "warning",
             showCancelButton: true,
             confirmButtonColor: "#3085d6",
             cancelButtonColor: "#d33",
-            confirmButtonText: "Yes, delete it!"
+            confirmButtonText: "Ya, hapus!",
+            cancelButtonText: "Batal"
         }).then((result) => {
             if (result.isConfirmed) {
                 form.submit();
