@@ -11,14 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('books', function (Blueprint $table) {
+        Schema::create('payments', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('title');
-            $table->string('author');
-            $table->integer('year');
-            $table->decimal('rating', 2, 1)->default(0);
-            $table->text('description')->nullable();
-            $table->foreignUuid('category_id')->constrained()->onDelete('cascade');
+            $table->foreignUuid('order_id')->constrained()->onDelete('cascade');
+            $table->string('payment_method');
+            $table->decimal('amount', 8, 2);
+            $table->timestamp('payment_date');
             $table->timestamps();
         });
     }
@@ -28,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('books');
+        Schema::dropIfExists('payments');
     }
 };
