@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Faker\Factory as FakerFactory;
 
@@ -24,6 +25,8 @@ class BookFactory extends Factory
             'title' => $faker->sentence(5),
             'author' => $faker->name,
             'year' => $faker->year(),
+            'description' => $faker->sentence(15),
+            'category_id' => Category::inRandomOrder()->first()->id,
         ];
     }
 }
