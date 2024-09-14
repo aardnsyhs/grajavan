@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('year');
             $table->decimal('rating', 2, 1)->default(0);
             $table->text('description')->nullable();
-            $table->foreignUuid('category_id')->constrained()->onDelete('cascade');
+            $table->foreignUuid('category_id')->nullable()->constrained()->onDelete('set null');
             $table->timestamps();
         });
     }

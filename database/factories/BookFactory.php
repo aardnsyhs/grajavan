@@ -22,7 +22,7 @@ class BookFactory extends Factory
         $faker = FakerFactory::create('id_ID');
 
         return [
-            'title' => $faker->sentence(5),
+            'title' => $faker->sentence(3),
             'author' => $faker->name,
             'year' => $faker->year(),
             'description' => $faker->sentence(15),

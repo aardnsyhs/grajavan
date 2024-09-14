@@ -1,7 +1,7 @@
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-2xl text-gray-800 dark:text-gray-200 leading-tight">
-            {{ __('Daftar Buku') }}
+            {{ __('Daftar Kategori') }}
         </h2>
     </x-slot>
 
@@ -10,17 +10,17 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-lg sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     <div class="flex justify-between items-center">
-                        <a href="{{ route('books.create') }}"
+                        <a href="{{ route('categories.create') }}"
                             class="inline-flex items-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out">
                             <svg class="w-5 h-5 mr-2" xmlns="http://www.w3.org/2000/svg" fill="none"
                                 viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                     d="M12 4v16m8-8H4" />
                             </svg>
-                            Tambah Buku
+                            Tambah Kategori
                         </a>
                         <div>
-                            <input type="text" id="search" placeholder="Cari Buku"
+                            <input type="text" id="search" placeholder="Cari Kategori"
                                 class="block mt-1 w-full px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md shadow-sm focus:ring-1 focus:ring-indigo-300 dark:focus:ring-indigo-600 focus:border-indigo-500 dark:focus:border-indigo-600 dark:bg-gray-700">
                         </div>
                     </div>
@@ -34,19 +34,6 @@
                                     ? 'bg-red-500'
                                     : ''));
                         $alertMessage = session('success') ?? (session('edit') ?? session('delete'));
-                        $currentSort = request('sort', 'id');
-                        $currentDirection = request('direction', 'asc');
-
-                        function getSortDirection($column, $currentSort, $currentDirection)
-                        {
-                            return $column === $currentSort && $currentDirection === 'asc' ? 'desc' : 'asc';
-                        }
-                        $columns = [
-                            'title' => 'Judul',
-                            'name' => 'Kategori',
-                            'author' => 'Pengarang',
-                            'year' => 'Tahun',
-                        ];
                     @endphp
 
                     @if ($alertMessage)
@@ -60,47 +47,34 @@
                             class="min-w-full mt-8 border-collapse border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg">
                             <thead id="table-head">
                                 <tr class="bg-gray-200 dark:bg-gray-700 text-left">
-                                    <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">No</th>
-                                    @foreach ($columns as $column => $label)
-                                        <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">
-                                            <a href="{{ request()->fullUrlWithQuery(['sort' => $column, 'direction' => getSortDirection($column, $currentSort, $currentDirection)]) }}"
-                                                class="font-bold">
-                                                {{ $label }}
-                                                @if ($currentSort === $column)
-                                                    @if ($currentDirection === 'asc')
-                                                        ▲
-                                                    @else
-                                                        ▼
-                                                    @endif
-                                                @endif
-                                            </a>
-                                        </th>
-                                    @endforeach
+                                    <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">
+                                        <a href="{{ request()->fullUrlWithQuery(['sort' => 'id', 'direction' => request('direction') == 'asc' ? 'desc' : 'asc']) }}"
+                                            class="font-bold">
+                                            No
+                                        </a>
+                                    </th>
+                                    <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">
+                                        <a href="{{ request()->fullUrlWithQuery(['sort' => 'name', 'direction' => request('direction') == 'asc' ? 'desc' : 'asc']) }}"
+                                            class="font-bold">
+                                            Nama Kategori
+                                        </a>
+                                    </th>
                                     <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">Aksi</th>
                                 </tr>
                             </thead>
-                            <tbody id="book-list">
-                                @foreach ($books as $book)
+                            <tbody id="category-list">
+                                @forelse ($categories as $category)
                                     <tr
                                         class="hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors duration-300 text-left">
                                         <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-600">
-                                            {{ ($books->currentPage() - 1) * $books->perPage() + $loop->iteration }}
+                                            {{ ($categories->currentPage() - 1) * $categories->perPage() + $loop->iteration }}
                                         </td>
                                         <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-600">
-                                            {{ $book->title }}
-                                        </td>
-                                        <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-600">
-                                            {{ $book->category->name ?? 'Tanpa Kategori' }}
-                                        </td>
-                                        <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-600">
-                                            {{ $book->author }}
-                                        </td>
-                                        <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-600">
-                                            {{ $book->year }}
+                                            {{ $category->name }}
                                         </td>
                                         <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-600">
                                             <div class="flex space-x-2">
-                                                <a href="{{ route('books.edit', $book->id) }}"
+                                                <a href="{{ route('categories.edit', $category->id) }}"
                                                     class="w-20 flex items-center justify-center bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-2 rounded shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out">
                                                     <svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                         height="16" fill="currentColor" class="bi bi-pencil mr-1"
@@ -110,11 +84,12 @@
                                                     </svg>
                                                     Edit
                                                 </a>
-                                                <form action="{{ route('books.destroy', $book->id) }}" method="POST"
-                                                    class="delete-book-button" style="display:inline-block;">
+                                                <form action="{{ route('categories.destroy', $category->id) }}"
+                                                    method="POST" class="delete-category-button"
+                                                    style="display:inline-block;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="button"
+                                                    <button type="submit"
                                                         class="w-20 flex items-center justify-center bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                             height="16" fill="currentColor" class="bi bi-trash3 mr-1"
@@ -128,15 +103,16 @@
                                             </div>
                                         </td>
                                     </tr>
-                                @endforeach
+                                @empty
+                                    <tr>
+                                        <td colspan="3" class="text-center py-4">Tidak ada kategori ditemukan.</td>
+                                    </tr>
+                                @endforelse
                             </tbody>
                         </table>
                     </div>
-                    <div id="no-results" class="text-center py-6 text-gray-600 dark:text-gray-300 hidden">
-                        Tidak ada hasil yang ditemukan.
-                    </div>
                     <div id="pagination" class="mt-6">
-                        {{ $books->links() }}
+                        {{ $categories->links() }}
                     </div>
                 </div>
             </div>

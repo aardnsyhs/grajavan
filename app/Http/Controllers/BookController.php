@@ -5,19 +5,25 @@ namespace App\Http\Controllers;
 use App\Models\Book;
 use Illuminate\Http\Request;
 
-class BookController extends Controller
-{
+    class BookController extends Controller
+    {
     public function index(Request $request)
     {
         $sort = $request->query('sort', 'id');
         $direction = $request->query('direction', 'asc');
 
-        $allowedSorts = ['id', 'title', 'author', 'year'];
+        $allowedSorts = ['id', 'name', 'title', 'author', 'year'];
+
         if (!in_array($sort, $allowedSorts)) {
             $sort = 'id';
         }
 
-        $books = Book::orderBy($sort, $direction)->paginate(10);
+        $books = Book::select('books.*')
+                    ->leftJoin('categories', 'books.category_id', '=', 'categories.id')
+                    ->with('category')
+                    ->orderBy($sort === 'name' ? 'categories.name' : $sort, $direction)
+                    ->paginate(10)
+                    ->appends(['sort' => $sort, 'direction' => $direction]);
 
         return view('admin.books.index', compact('books'));
     }
