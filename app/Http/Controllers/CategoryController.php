@@ -10,12 +10,19 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        // Ambil kategori dan paginasi 10 per halaman
-        $categories = Category::orderBy('id', 'asc')->paginate(10);
+        $sort = $request->query('sort', 'id');
+        $direction = $request->query('direction', 'asc');
 
-        // Kirimkan data kategori ke view
+        $allowedSorts = ['id', 'name'];
+
+        if (!in_array($sort, $allowedSorts)) {
+            $sort = 'id';
+        }
+
+        $categories = Category::orderBy($sort, $direction)->paginate(10)->appends(['sort' => $sort, 'direction' => $direction]);
+
         return view('admin.categories.index', compact('categories'));
     }
 

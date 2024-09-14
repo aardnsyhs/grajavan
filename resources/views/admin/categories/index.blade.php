@@ -47,16 +47,18 @@
                             class="min-w-full mt-8 border-collapse border border-gray-300 dark:border-gray-600 rounded-lg shadow-lg">
                             <thead id="table-head">
                                 <tr class="bg-gray-200 dark:bg-gray-700 text-left">
-                                    <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">
-                                        <a href="{{ request()->fullUrlWithQuery(['sort' => 'id', 'direction' => request('direction') == 'asc' ? 'desc' : 'asc']) }}"
-                                            class="font-bold">
-                                            No
-                                        </a>
-                                    </th>
-                                    <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">
-                                        <a href="{{ request()->fullUrlWithQuery(['sort' => 'name', 'direction' => request('direction') == 'asc' ? 'desc' : 'asc']) }}"
-                                            class="font-bold">
+                                    <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">No</th>
+                                    <th>
+                                        <a
+                                            href="{{ request()->fullUrlWithQuery(['sort' => 'name', 'direction' => request('direction') === 'asc' ? 'desc' : 'asc']) }}">
                                             Nama Kategori
+                                            @if (request('sort') === 'name')
+                                                @if (request('direction') === 'asc')
+                                                    ▲
+                                                @else
+                                                    ▼
+                                                @endif
+                                            @endif
                                         </a>
                                     </th>
                                     <th class="px-6 py-3 border-b border-gray-300 dark:border-gray-600">Aksi</th>
