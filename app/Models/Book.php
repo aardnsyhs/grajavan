@@ -31,4 +31,26 @@ class Book extends Model
     {
         return $this->belongsTo(Category::class, 'category_id');
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class);
+    }
+
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class);
+    }
+
+    public function bookTypes()
+    {
+        return $this->belongsToMany(BookType::class, 'book_type_book')
+                    ->withPivot('stock', 'price')
+                    ->withTimestamps();
+    }
 }
