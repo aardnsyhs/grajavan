@@ -17,21 +17,51 @@
                             <x-input-label for="title" :value="__('Judul Buku')" />
                             <x-text-input id="title"
                                 class="block mt-2 w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-md shadow-sm focus:ring-1 focus:ring-indigo-200 dark:focus:ring-indigo-500 focus:border-indigo-400 dark:focus:border-indigo-500 dark:bg-gray-700"
-                                type="text" name="title" value="{{ $book->title }}" required autofocus />
+                                type="text" name="title" value="{{ $book->title }}" autofocus />
+                        </div>
+
+                        <div class="mb-6">
+                            <x-input-label for="category" :value="__('Kategori')" />
+                            <select id="category"
+                                class="block mt-2 w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-md shadow-sm focus:ring-1 focus:ring-indigo-200 dark:focus:ring-indigo-500 focus:border-indigo-400 dark:focus:border-indigo-500 dark:bg-gray-700"
+                                name="category_id">
+                                <option value="">{{ __('Pilih Kategori') }}</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}"
+                                        {{ $book->category_id == $category->id ? 'selected' : '' }}>
+                                        {{ $category->name }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mb-6">
+                            <x-input-label for="description" :value="__('Deskripsi Buku')" />
+                            <textarea id="description" name="description"
+                                class="block mt-2 w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-md shadow-sm focus:ring-1 focus:ring-indigo-200 dark:focus:ring-indigo-500 focus:border-indigo-400 dark:focus:border-indigo-500 dark:bg-gray-700"
+                                rows="5">{{ $book->description }}</textarea>
                         </div>
 
                         <div class="mb-6">
                             <x-input-label for="author" :value="__('Pengarang')" />
                             <x-text-input id="author"
                                 class="block mt-2 w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-md shadow-sm focus:ring-1 focus:ring-indigo-200 dark:focus:ring-indigo-500 focus:border-indigo-400 dark:focus:border-indigo-500 dark:bg-gray-700"
-                                type="text" name="author" value="{{ $book->author }}" required />
+                                type="text" name="author" value="{{ $book->author }}" />
                         </div>
 
                         <div class="mb-6">
                             <x-input-label for="year" :value="__('Tahun Terbit')" />
                             <x-text-input id="year"
                                 class="block mt-2 w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-md shadow-sm focus:ring-1 focus:ring-indigo-200 dark:focus:ring-indigo-500 focus:border-indigo-400 dark:focus:border-indigo-500 dark:bg-gray-700"
-                                type="number" name="year" value="{{ $book->year }}" required />
+                                type="number" name="year" value="{{ $book->year }}" />
+                        </div>
+
+                        <div class="mb-6">
+                            <x-input-label for="rating" :value="__('Rating')" />
+                            <x-text-input id="rating"
+                                class="block mt-2 w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-md shadow-sm focus:ring-1 focus:ring-indigo-200 dark:focus:ring-indigo-500 focus:border-indigo-400 dark:focus:border-indigo-500 dark:bg-gray-700"
+                                type="number" step="0.1" name="rating" min="0" max="5"
+                                value="{{ $book->rating }}" />
                         </div>
 
                         <div class="flex items-center justify-end mt-8">

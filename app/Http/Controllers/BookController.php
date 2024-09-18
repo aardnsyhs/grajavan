@@ -52,7 +52,8 @@ use Illuminate\Http\Request;
 
     public function edit(Book $book)
     {
-        return view('admin.books.edit', compact('book'));
+        $categories = Category::all();
+        return view('admin.books.edit', compact(['book', 'categories']));
     }
 
     public function update(Request $request, Book $book)
