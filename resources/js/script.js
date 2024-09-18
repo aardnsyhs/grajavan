@@ -48,13 +48,19 @@ document.getElementById('search').addEventListener('input', function(e) {
     let hasResults = false;
 
     rows.forEach(function(row) {
-        const [title, author, year] = [
+        const [title, category, author, description, year, rating] = [
             row.querySelector('td:nth-child(2)').textContent.toLowerCase(),
             row.querySelector('td:nth-child(3)').textContent.toLowerCase(),
-            row.querySelector('td:nth-child(4)').textContent.toLowerCase()
+            row.querySelector('td:nth-child(4)').textContent.toLowerCase(),
+            row.querySelector('td:nth-child(5)').textContent.toLowerCase(),
+            row.querySelector('td:nth-child(6)').textContent.toLowerCase(),
+            row.querySelector('td:nth-child(7)').textContent.toLowerCase()
         ];
 
-        const isVisible = title.includes(query) || author.includes(query) || year.includes(query);
+        const isVisible = title.includes(query) || category.includes(query) || 
+                          author.includes(query) || description.includes(query) || 
+                          year.includes(query) || rating.includes(query);
+        
         row.style.display = isVisible ? '' : 'none';
         hasResults = hasResults || isVisible;
     });
