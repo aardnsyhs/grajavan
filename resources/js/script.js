@@ -54,7 +54,7 @@ document.getElementById('search').addEventListener('input', function(e) {
             row.querySelector('td:nth-child(4)').textContent.toLowerCase(),
             row.querySelector('td:nth-child(5)').textContent.toLowerCase(),
             row.querySelector('td:nth-child(6)').textContent.toLowerCase(),
-            row.querySelector('td:nth-child(7)').textContent.toLowerCase()    // Rating as string
+            row.querySelector('td:nth-child(7)').textContent.toLowerCase()
         ];
 
         const isVisible = title.includes(query) || category.includes(query) || 
