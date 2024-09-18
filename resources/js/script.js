@@ -1,24 +1,26 @@
 import Swal from "sweetalert2";
 
-document.querySelectorAll('.delete-book-button').forEach(function(button) {
-    button.addEventListener('click', function() {
-        const form = this.closest('form');
-        Swal.fire({
-            title: "Apakah Anda yakin?",
-            text: "Data ini tidak dapat dikembalikan setelah dihapus!",
-            icon: "warning",
-            showCancelButton: true,
-            confirmButtonColor: "#3085d6",
-            cancelButtonColor: "#d33",
-            confirmButtonText: "Ya, hapus!",
-            cancelButtonText: "Batal"
-        }).then((result) => {
-            if (result.isConfirmed) {
-                form.submit();
-            }
+const deleteButtons = document.querySelectorAll('.delete-button');
+
+    deleteButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const form = this.closest('.delete-form');
+            Swal.fire({
+                title: "Apakah Anda yakin?",
+                text: "Data ini akan dihapus secara permanen!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#3085d6",
+                confirmButtonText: "Ya, hapus!",
+                cancelButtonText: "Batal"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
         });
     });
-});
 
 function removeAlertAfterTimeout(alertId, timeout) {
     const alertElement = document.getElementById(alertId);

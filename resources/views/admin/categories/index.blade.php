@@ -87,12 +87,11 @@
                                                     Edit
                                                 </a>
                                                 <form action="{{ route('categories.destroy', $category->id) }}"
-                                                    method="POST" class="delete-category-button"
-                                                    style="display:inline-block;">
+                                                    method="POST" class="delete-form" style="display:inline-block;">
                                                     @csrf
                                                     @method('DELETE')
-                                                    <button type="submit"
-                                                        class="w-20 flex items-center justify-center bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out">
+                                                    <button type="button"
+                                                        class="delete-button w-20 flex items-center justify-center bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-2 rounded shadow-lg transform hover:scale-105 transition-transform duration-300 ease-in-out">
                                                         <svg xmlns="http://www.w3.org/2000/svg" width="16"
                                                             height="16" fill="currentColor" class="bi bi-trash3 mr-1"
                                                             viewBox="0 0 16 16">
