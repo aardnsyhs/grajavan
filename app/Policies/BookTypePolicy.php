@@ -13,7 +13,7 @@ class BookTypePolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return $user->role === 'admin';
     }
 
     /**
@@ -21,7 +21,7 @@ class BookTypePolicy
      */
     public function view(User $user, BookType $bookType): bool
     {
-        //
+        return $user->role === 'admin';
     }
 
     /**
@@ -29,7 +29,7 @@ class BookTypePolicy
      */
     public function create(User $user): bool
     {
-        //
+        return $user->role === 'admin';
     }
 
     /**
@@ -37,7 +37,7 @@ class BookTypePolicy
      */
     public function update(User $user, BookType $bookType): bool
     {
-        //
+        return $user->role === 'admin';
     }
 
     /**
@@ -45,7 +45,7 @@ class BookTypePolicy
      */
     public function delete(User $user, BookType $bookType): bool
     {
-        //
+        return $user->role === 'admin';
     }
 
     /**
@@ -53,7 +53,7 @@ class BookTypePolicy
      */
     public function restore(User $user, BookType $bookType): bool
     {
-        //
+        return $user->role === 'admin';
     }
 
     /**
@@ -61,6 +61,6 @@ class BookTypePolicy
      */
     public function forceDelete(User $user, BookType $bookType): bool
     {
-        //
+        return $user->role === 'admin';
     }
 }

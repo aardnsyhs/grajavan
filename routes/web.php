@@ -17,9 +17,9 @@ Route::get('/dashboard', function () {
 Route::get('/category', [CategoryController::class, 'index'])->middleware(['auth', $admin])->name('category.index');
 
 Route::middleware(['auth', $admin])->group(function () {
-    Route::get('/admin', function() {
-        return view('admin.index');
-    });
+    // Route::get('/admin', function() {
+    //     return view('admin.index');
+    // });
 
     Route::resource('categories', CategoryController::class);
     
@@ -32,4 +32,3 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
