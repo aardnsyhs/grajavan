@@ -25,13 +25,15 @@ class BookTypeBookResource extends Resource
                     ->label('Pilih Buku')
                     ->required(),
                 Forms\Components\Select::make('book_type_id')
-                    ->relationship('book_type', 'name')
+                    ->relationship('bookType', 'name')
                     ->label('Pilih Tipe')
                     ->required(),
                 Forms\Components\TextInput::make('stock')
                     ->required()
+                    ->label('Stok')
                     ->numeric(),
                 Forms\Components\TextInput::make('price')
+                    ->label('Harga')
                     ->required()
                     ->numeric()
                     ->prefix('Rp.'),
@@ -42,16 +44,10 @@ class BookTypeBookResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('book_id')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('book_type_id')
-                    ->searchable(),
-                Tables\Columns\TextColumn::make('stock')
-                    ->numeric()
-                    ->sortable(),
-                Tables\Columns\TextColumn::make('price')
-                    ->money()
-                    ->sortable(),
+                Tables\Columns\TextColumn::make('book.title')->label('Judul Buku')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('bookType.name')->label('Tipe Buku')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('stock')->numeric()->label('Stok')->sortable(),
+                Tables\Columns\TextColumn::make('price')->label('Harga')->sortable()->formatStateUsing(function ($state) {return 'Rp.' . number_format($state, 0, ',');}),
             ])
             ->filters([
                 //
