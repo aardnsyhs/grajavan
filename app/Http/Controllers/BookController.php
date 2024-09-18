@@ -13,7 +13,7 @@ use Illuminate\Http\Request;
         $sort = $request->query('sort', 'id');
         $direction = $request->query('direction', 'asc');
 
-        $allowedSorts = ['id', 'name', 'title', 'author', 'year'];
+        $allowedSorts = ['id', 'name', 'title', 'author', 'year', 'description', 'rating'];
 
         if (!in_array($sort, $allowedSorts)) {
             $sort = 'id';
@@ -43,6 +43,7 @@ use Illuminate\Http\Request;
             'year' => 'required|integer',
             'category_id' => 'required|exists:categories,id',
             'description' => 'required|string|min:1',
+            'rating' => 'required|numeric|min:0|max:5',
         ]);
 
         Book::create($request->all());

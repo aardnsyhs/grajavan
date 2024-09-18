@@ -13,7 +13,7 @@
                     <form action="{{ route('books.store') }}" method="POST">
                         @csrf
                         <div class="mb-6">
-                            <x-input-label for="title" :value="__('Judul Buku')" />
+                            <x-input-label for="title" :value="__('Judul')" />
                             <x-text-input id="title"
                                 class="block mt-2 w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-md shadow-sm focus:ring-1 focus:ring-indigo-200 dark:focus:ring-indigo-500 focus:border-indigo-400 dark:focus:border-indigo-500 dark:bg-gray-700"
                                 type="text" name="title" required autofocus />
@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="mb-6">
-                            <x-input-label for="description" :value="__('Deskripsi Buku')" />
+                            <x-input-label for="description" :value="__('Deskripsi')" />
                             <textarea id="description" name="description"
                                 class="block mt-2 w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-md shadow-sm focus:ring-1 focus:ring-indigo-200 dark:focus:ring-indigo-500 focus:border-indigo-400 dark:focus:border-indigo-500 dark:bg-gray-700"
                                 rows="5" required></textarea>
@@ -50,6 +50,13 @@
                             <x-text-input id="year"
                                 class="block mt-2 w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-md shadow-sm focus:ring-1 focus:ring-indigo-200 dark:focus:ring-indigo-500 focus:border-indigo-400 dark:focus:border-indigo-500 dark:bg-gray-700"
                                 type="number" name="year" required />
+                        </div>
+
+                        <div class="mb-6">
+                            <x-input-label for="rating" :value="__('Rating')" />
+                            <x-text-input id="rating"
+                                class="block mt-2 w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-md shadow-sm focus:ring-1 focus:ring-indigo-200 dark:focus:ring-indigo-500 focus:border-indigo-400 dark:focus:border-indigo-500 dark:bg-gray-700"
+                                type="number" step="0.1" name="rating" min="0" max="5" required />
                         </div>
 
                         <div class="flex items-center justify-end mt-8">

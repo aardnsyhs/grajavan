@@ -45,7 +45,9 @@
                             'title' => 'Judul',
                             'name' => 'Kategori',
                             'author' => 'Pengarang',
+                            'description' => 'Deskripsi',
                             'year' => 'Tahun',
+                            'rating' => 'Rating',
                         ];
                     @endphp
 
@@ -96,7 +98,13 @@
                                             {{ $book->author }}
                                         </td>
                                         <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-600">
+                                            {{ \Illuminate\Support\Str::words($book->description, 5, '...') }}
+                                        </td>
+                                        <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-600">
                                             {{ $book->year }}
+                                        </td>
+                                        <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-600">
+                                            {{ $book->rating }}
                                         </td>
                                         <td class="px-6 py-4 border-b border-gray-300 dark:border-gray-600">
                                             <div class="flex space-x-2">
