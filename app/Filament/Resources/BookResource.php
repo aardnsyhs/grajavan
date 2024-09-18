@@ -51,7 +51,7 @@ class BookResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('title')->label('Judul')->sortable()->searchable(),
+                Tables\Columns\TextColumn::make('title')->label('Judul')->sortable()->searchable()->formatStateUsing(fn (string $state): string => Str::words($state, 5, '...')),
                 Tables\Columns\TextColumn::make('category.name')->label('Kategori')->sortable(),
                 Tables\Columns\TextColumn::make('author')->label('Pengarang')->sortable()->searchable(),
                 Tables\Columns\TextColumn::make('description')->label('Deskripsi')->sortable()->searchable()->formatStateUsing(fn (string $state): string => Str::words($state, 5, '...')),
