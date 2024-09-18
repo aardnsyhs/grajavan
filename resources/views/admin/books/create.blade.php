@@ -39,6 +39,13 @@
                         </div>
 
                         <div class="mb-6">
+                            <x-input-label for="description" :value="__('Deskripsi Buku')" />
+                            <textarea id="description" name="description"
+                                class="block mt-2 w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-md shadow-sm focus:ring-1 focus:ring-indigo-200 dark:focus:ring-indigo-500 focus:border-indigo-400 dark:focus:border-indigo-500 dark:bg-gray-700"
+                                rows="5" required></textarea>
+                        </div>
+
+                        <div class="mb-6">
                             <x-input-label for="year" :value="__('Tahun Terbit')" />
                             <x-text-input id="year"
                                 class="block mt-2 w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-md shadow-sm focus:ring-1 focus:ring-indigo-200 dark:focus:ring-indigo-500 focus:border-indigo-400 dark:focus:border-indigo-500 dark:bg-gray-700"

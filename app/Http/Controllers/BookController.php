@@ -42,6 +42,7 @@ use Illuminate\Http\Request;
             'author' => 'required',
             'year' => 'required|integer',
             'category_id' => 'required|exists:categories,id',
+            'description' => 'required|string|min:1',
         ]);
 
         Book::create($request->all());
