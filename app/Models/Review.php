@@ -11,9 +11,20 @@ class Review extends Model
     use HasFactory;
 
     protected $keyType = 'string';
-    public $incrementing = false;
 
-    protected $fillable = ['book_id', 'user_id', 'rating', 'comment'];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'book_id',
+        'user_id',
+        'rating',
+        'comment',
+    ];
+
+    public $incrementing = false;
 
     protected static function boot()
     {
@@ -29,5 +40,10 @@ class Review extends Model
     public function book()
     {
         return $this->belongsTo(Book::class);
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

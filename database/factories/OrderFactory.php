@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,15 +10,14 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class OrderFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = \App\Models\Order::class;
+
+    public function definition()
     {
         return [
-            //
+            'user_id' => User::factory(),
+            'status' => 'pending',
+            'total_price' => $this->faker->randomFloat(2, 100, 1000),
         ];
     }
 }

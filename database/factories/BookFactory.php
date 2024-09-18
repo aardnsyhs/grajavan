@@ -2,31 +2,23 @@
 
 namespace Database\Factories;
 
+use App\Models\Book;
 use App\Models\Category;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Faker\Factory as FakerFactory;
 
-/**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Book>
- */
 class BookFactory extends Factory
 {
-    protected static $index = 0;
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
-    {
-        $faker = FakerFactory::create('id_ID');
+    protected $model = Book::class;
 
+    public function definition()
+    {
         return [
-            'title' => $faker->sentence(3),
-            'author' => $faker->name,
-            'year' => $faker->year(),
-            'description' => $faker->sentence(15),
-            'category_id' => Category::inRandomOrder()->first()->id,
+            'title' => $this->faker->sentence,
+            'author' => $this->faker->name,
+            'year' => $this->faker->year,
+            'rating' => $this->faker->randomFloat(1, 0, 5),
+            'description' => $this->faker->paragraph,
+            'category_id' => Category::factory(),
         ];
     }
 }

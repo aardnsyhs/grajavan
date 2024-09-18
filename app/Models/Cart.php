@@ -11,9 +11,20 @@ class Cart extends Model
     use HasFactory;
 
     protected $keyType = 'string';
-    public $incrementing = false;
 
-    protected $fillable = ['user_id', 'book_id', 'book_type_id', 'quantity'];
+    /**
+     * The attributes that are mass assignable.
+     *
+     * @var array
+     */
+    protected $fillable = [
+        'user_id',
+        'book_id',
+        'book_type_id',
+        'quantity',
+    ];
+
+    public $incrementing = false;
 
     protected static function boot()
     {
@@ -26,12 +37,17 @@ class Cart extends Model
         });
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function book()
     {
         return $this->belongsTo(Book::class);
     }
 
-    public function bookType()
+    public function BookType()
     {
         return $this->belongsTo(BookType::class);
     }

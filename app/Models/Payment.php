@@ -11,9 +11,15 @@ class Payment extends Model
     use HasFactory;
 
     protected $keyType = 'string';
-    public $incrementing = false;
 
-    protected $fillable = ['order_id', 'payment_method', 'amount', 'payment_date'];
+    protected $fillable = [
+        'order_id',
+        'payment_method',
+        'amount',
+        'payment_date',
+    ];
+
+    public $incrementing = false;
 
     protected static function boot()
     {

@@ -6,14 +6,15 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Str;
 
-class Cart extends Model
+class BookTypeBook extends Model
 {
     use HasFactory;
 
     protected $keyType = 'string';
-    public $incrementing = false;
+    
+    protected $fillable = ['book_id', 'book_type_id', 'stock', 'price'];
 
-    protected $fillable = ['user_id', 'book_id', 'book_type_id', 'quantity'];
+    public $incrementing = false;
 
     protected static function boot()
     {
@@ -28,11 +29,14 @@ class Cart extends Model
 
     public function book()
     {
-        return $this->belongsTo(Book::class);
+        return $this->belongsTo(Book::class, 'book_id');
     }
-
-    public function bookType()
+     public function bookType()
+     {
+         return $this->belongsTo(BookType::class, 'book_type_id');
+     }
+     public function orderItems()
     {
-        return $this->belongsTo(BookType::class);
+        return $this->hasMany(OrderItem::class);
     }
 }

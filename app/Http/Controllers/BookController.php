@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Book;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
     class BookController extends Controller
@@ -30,7 +31,8 @@ use Illuminate\Http\Request;
 
     public function create()
     {
-        return view('admin.books.create');
+        $categories = Category::all();
+        return view('admin.books.create', compact('categories'));
     }
 
     public function store(Request $request)
@@ -39,6 +41,7 @@ use Illuminate\Http\Request;
             'title' => 'required',
             'author' => 'required',
             'year' => 'required|integer',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
         Book::create($request->all());

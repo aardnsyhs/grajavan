@@ -11,9 +11,16 @@ class OrderItem extends Model
     use HasFactory;
 
     protected $keyType = 'string';
-    public $incrementing = false;
 
-    protected $fillable = ['order_id', 'book_id', 'book_type_id', 'quantity', 'price'];
+    protected $fillable = [
+        'order_id',
+        'book_id',
+        'book_type_id',
+        'quantity',
+        'price',
+    ];
+
+    public $incrementing = false;
 
     protected static function boot()
     {
@@ -38,6 +45,6 @@ class OrderItem extends Model
 
     public function bookType()
     {
-        return $this->belongsTo(BookType::class);
+        return $this->belongsTo(BookTypeBook::class);
     }
 }

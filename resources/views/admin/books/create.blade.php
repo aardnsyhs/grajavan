@@ -20,6 +20,18 @@
                         </div>
 
                         <div class="mb-6">
+                            <x-input-label for="category" :value="__('Kategori')" />
+                            <select id="category"
+                                class="block mt-2 w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-md shadow-sm focus:ring-1 focus:ring-indigo-200 dark:focus:ring-indigo-500 focus:border-indigo-400 dark:focus:border-indigo-500 dark:bg-gray-700"
+                                name="category_id" required>
+                                <option value="">{{ __('Pilih Kategori') }}</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div class="mb-6">
                             <x-input-label for="author" :value="__('Pengarang')" />
                             <x-text-input id="author"
                                 class="block mt-2 w-full px-4 py-2 border border-gray-200 dark:border-gray-600 rounded-md shadow-sm focus:ring-1 focus:ring-indigo-200 dark:focus:ring-indigo-500 focus:border-indigo-400 dark:focus:border-indigo-500 dark:bg-gray-700"

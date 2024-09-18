@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Support\Str;
 
 class Book extends Model
@@ -13,7 +12,7 @@ class Book extends Model
 
     protected $keyType = 'string';
 
-    protected $fillable = ["title", "author", "year", "description"];
+    protected $fillable = ["title", "author", "year", "category_id"];
 
     public $incrementing = false;
 
@@ -27,30 +26,20 @@ class Book extends Model
         });
     }
 
-    public function category(): BelongsTo
+    public function category()
     {
-        return $this->belongsTo(Category::class, 'category_id');
+        return $this->belongsTo(category::class);
     }
-
+    public function BookTypeBook()
+    {
+        return $this->hasMany(BookTypeBook::class, 'book_id');
+    }
     public function reviews()
     {
         return $this->hasMany(Review::class);
     }
-
-    public function carts()
-    {
-        return $this->hasMany(Cart::class);
-    }
-
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
-    }
-
-    public function bookTypes()
-    {
-        return $this->belongsToMany(BookType::class, 'book_type_book')
-                    ->withPivot('stock', 'price')
-                    ->withTimestamps();
     }
 }

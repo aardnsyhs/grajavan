@@ -26,10 +26,13 @@ class BookType extends Model
         });
     }
 
-    public function books()
+    public function bookTypeBooks()
     {
-        return $this->belongsToMany(Book::class, 'book_type_book')
-                    ->withPivot('stock', 'price')
-                    ->withTimestamps();
+        return $this->hasMany(BookTypeBook::class, 'book_type_id');
+    }
+
+    public function carts()
+    {
+        return $this->hasMany(Cart::class, 'book_type_id');
     }
 }

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\BookType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -9,15 +10,12 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class BookTypeFactory extends Factory
 {
-    /**
-     * Define the model's default state.
-     *
-     * @return array<string, mixed>
-     */
-    public function definition(): array
+    protected $model = BookType::class;
+
+    public function definition()
     {
         return [
-            //
+            'name' => $this->faker->word,
         ];
     }
 }

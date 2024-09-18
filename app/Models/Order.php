@@ -11,9 +11,14 @@ class Order extends Model
     use HasFactory;
 
     protected $keyType = 'string';
-    public $incrementing = false;
 
-    protected $fillable = ['user_id', 'status', 'total_price'];
+    protected $fillable = [
+        'user_id',
+        'status',
+        'total_price',
+    ];
+
+    public $incrementing = false;
 
     protected static function boot()
     {
@@ -34,5 +39,10 @@ class Order extends Model
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function payments()
+    {
+        return $this->hasMany(Payment::class);
     }
 }
