@@ -54,13 +54,30 @@ document.getElementById('search').addEventListener('input', function(e) {
             row.querySelector('td:nth-child(4)').textContent.toLowerCase(),
             row.querySelector('td:nth-child(5)').textContent.toLowerCase(),
             row.querySelector('td:nth-child(6)').textContent.toLowerCase(),
-            row.querySelector('td:nth-child(7)').textContent.toLowerCase()
+            row.querySelector('td:nth-child(7)').textContent.toLowerCase()    // Rating as string
         ];
 
         const isVisible = title.includes(query) || category.includes(query) || 
                           author.includes(query) || description.includes(query) || 
                           year.includes(query) || rating.includes(query);
         
+        row.style.display = isVisible ? '' : 'none';
+        hasResults = hasResults || isVisible;
+    });
+
+    toggleSearchResults(hasResults);
+});
+
+document.getElementById('search').addEventListener('input', function(e) {
+    const query = e.target.value.trim().toLowerCase();
+
+    const rows = document.querySelectorAll('#category-list tr');
+    let hasResults = false;
+
+    rows.forEach(function(row) {
+        const category = row.querySelector('td:nth-child(2)').textContent.toLowerCase(); // Nama kategori
+
+        const isVisible = category.includes(query);
         row.style.display = isVisible ? '' : 'none';
         hasResults = hasResults || isVisible;
     });

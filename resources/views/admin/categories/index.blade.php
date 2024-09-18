@@ -113,6 +113,9 @@
                             </tbody>
                         </table>
                     </div>
+                    <div id="no-results" class="text-center py-6 text-gray-600 dark:text-gray-300 hidden">
+                        Tidak ada hasil yang ditemukan.
+                    </div>
                     <div id="pagination" class="mt-6">
                         {{ $categories->links() }}
                     </div>
