@@ -14,14 +14,14 @@
                         {{ __('Kamu admin') }}
                     </div>
                     <p class="mt-2 text-lg text-gray-600 dark:text-gray-400">
-                        Kamu memiliki akses untuk mengelola semua data buku di sistem. Pastikan data tetap teratur dan
+                        Kamu memiliki akses untuk mengelola semua data di sistem. Pastikan data tetap teratur dan
                         terbaru.
                     </p>
                     <div class="mt-6">
                         <a href="{{ route('books.index') }}"
                             class="inline-flex items-center bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg shadow-lg transform hover:scale-105 transition-transform duration-300">
                             <img src="{{ asset('images/gear.svg') }}" alt="Gear Icon" class="w-5 h-5 mr-2">
-                            Kelola Buku
+                            Kelola Data
                         </a>
                     </div>
                 </div>
