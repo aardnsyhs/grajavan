@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
-                @can('admin-access')
+                @if (Auth::user() && Auth::user()->role === 'admin')
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link :href="route('books.index')" :active="request()->routeIs('books.index')" class="text-xl font-semibold">
                             {{ __('Buku') }}
@@ -27,7 +27,7 @@
                             {{ __('Kategori') }}
                         </x-nav-link>
                     </div>
-                @endcan
+                @endif
             </div>
 
             <!-- Settings Dropdown -->
