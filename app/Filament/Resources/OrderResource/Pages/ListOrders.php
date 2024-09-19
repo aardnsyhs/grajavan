@@ -25,13 +25,13 @@ class ListOrders extends ListRecords
     {
         return [
             'all' => Tab::make('All'),
-            'pending' => Tab::make('Pending')
+            'Pending' => Tab::make('Pending')
                 ->modifyQueryUsing(fn ($query) => $query->where('status', 'Pending')),
-            'processing' => Tab::make('Processing')
+            'Processing' => Tab::make('Processing')
                 ->modifyQueryUsing(fn ($query) => $query->where('status', 'Processing')),
-            'completed' => Tab::make('Completed')
+            'Completed' => Tab::make('Completed')
                 ->modifyQueryUsing(fn ($query) => $query->where('status', 'Completed')),
-            'cancelled' => Tab::make('Cancelled')
+            'Cancelled' => Tab::make('Cancelled')
                 ->modifyQueryUsing(fn ($query) => $query->where('status', 'Cancelled')),
         ];
     }
