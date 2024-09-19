@@ -14,6 +14,8 @@ class BookTypeBookResource extends Resource
 {
     protected static ?string $model = BookTypeBook::class;
 
+    protected static ?string $navigationGroup = 'Library';
+
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
     public static function form(Form $form): Form
@@ -77,10 +79,5 @@ class BookTypeBookResource extends Resource
             'create' => Pages\CreateBookTypeBook::route('/create'),
             'edit' => Pages\EditBookTypeBook::route('/{record}/edit'),
         ];
-    }
-
-    public static function getNavigationGroup(): ?string
-    {
-        return 'Library';
     }
 }

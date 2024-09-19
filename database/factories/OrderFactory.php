@@ -16,7 +16,7 @@ class OrderFactory extends Factory
     {
         return [
             'user_id' => User::factory(),
-            'status' => 'pending',
+            'status' => 'Pending',
             'total_price' => $this->faker->randomFloat(2, 100, 1000),
         ];
     }

@@ -3,19 +3,18 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\BookTypeResource\Pages;
-use App\Filament\Resources\BookTypeResource\RelationManagers;
 use App\Models\BookType;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class BookTypeResource extends Resource
 {
     protected static ?string $model = BookType::class;
+
+    protected static ?string $navigationGroup = 'Library';
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 
@@ -65,10 +64,5 @@ class BookTypeResource extends Resource
             'create' => Pages\CreateBookType::route('/create'),
             'edit' => Pages\EditBookType::route('/{record}/edit'),
         ];
-    }
-
-    public static function getNavigationGroup(): ?string
-    {
-        return 'Library';
     }
 }
