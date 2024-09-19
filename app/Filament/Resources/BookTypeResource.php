@@ -66,4 +66,9 @@ class BookTypeResource extends Resource
             'edit' => Pages\EditBookType::route('/{record}/edit'),
         ];
     }
+
+    public static function getNavigationGroup(): ?string
+    {
+        return 'Library';
+    }
 }
