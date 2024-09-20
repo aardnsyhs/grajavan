@@ -45,8 +45,8 @@ use Illuminate\Http\Request;
             'description' => 'required|string|min:1',
             'rating' => 'required|numeric|min:0|max:5',
         ]);
+        Book::create($request->only('title', 'description', 'category_id', 'author', 'rating', 'year', 'image'));
 
-        Book::create($request->all());
         return redirect()->route('books.index')->with('success', 'Buku berhasil ditambahkan.');
     }
 

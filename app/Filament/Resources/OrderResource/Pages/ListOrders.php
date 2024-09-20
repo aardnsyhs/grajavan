@@ -16,9 +16,7 @@ class ListOrders extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        return [
-            Actions\CreateAction::make(),
-        ];
+        return [];
     }
 
     public function getTabs(): array
