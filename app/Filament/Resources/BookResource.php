@@ -78,6 +78,8 @@ class BookResource extends Resource
                 TextColumn::make('author')->label('Pengarang')->sortable()->searchable(),
                 TextColumn::make('year')->label('Tahun')->sortable(),
                 TextColumn::make('rating')->label('Rating')->sortable(),
+                TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true)
             ])
             ->filters([
                 //

@@ -11,6 +11,7 @@ use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
+use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
 
 class BookTypeBookResource extends Resource
@@ -57,10 +58,12 @@ class BookTypeBookResource extends Resource
     {
         return $table
             ->columns([
-                Tables\Columns\TextColumn::make('book.title')->label('Judul Buku')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('bookType.name')->label('Tipe Buku')->sortable()->searchable(),
-                Tables\Columns\TextColumn::make('stock')->numeric()->label('Stok')->sortable(),
-                Tables\Columns\TextColumn::make('price')->label('Harga')->sortable()->formatStateUsing(function ($state) {return 'Rp.' . number_format($state, 0, ',');}),
+                TextColumn::make('book.title')->label('Judul Buku')->sortable()->searchable(),
+                TextColumn::make('bookType.name')->label('Tipe Buku')->sortable()->searchable(),
+                TextColumn::make('stock')->numeric()->label('Stok')->sortable(),
+                TextColumn::make('price')->label('Harga')->sortable()->formatStateUsing(function ($state) {return 'Rp.' . number_format($state, 0, ',');}),
+                TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
+                TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true)
             ])
             ->filters([
                 //
