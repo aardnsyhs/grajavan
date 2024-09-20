@@ -4,7 +4,10 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\BookTypeBookResource\Pages;
 use App\Models\BookTypeBook;
-use Filament\Forms;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Section;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
@@ -22,23 +25,31 @@ class BookTypeBookResource extends Resource
     {
         return $form
             ->schema([
-                Forms\Components\Select::make('book_id')
-                    ->relationship('book', 'title')
-                    ->label('Pilih Buku')
-                    ->required(),
-                Forms\Components\Select::make('book_type_id')
-                    ->relationship('bookType', 'name')
-                    ->label('Pilih Tipe')
-                    ->required(),
-                Forms\Components\TextInput::make('stock')
-                    ->required()
-                    ->label('Stok')
-                    ->numeric(),
-                Forms\Components\TextInput::make('price')
-                    ->label('Harga')
-                    ->required()
-                    ->numeric()
-                    ->prefix('Rp.'),
+                Section::make([
+                    Grid::make(2)
+                        ->schema([
+                            Select::make('book_id')
+                                ->relationship('book', 'title')
+                                ->label('Pilih Buku')
+                                ->required(),
+                            Select::make('book_type_id')
+                                ->relationship('bookType', 'name')
+                                ->label('Pilih Tipe')
+                                ->required(),
+                        ]),
+                    Grid::make(2)
+                        ->schema([
+                            TextInput::make('stock')
+                                ->required()
+                                ->label('Stok')
+                                ->numeric(),
+                            TextInput::make('price')
+                                ->label('Harga')
+                                ->required()
+                                ->numeric()
+                                ->prefix('Rp.'),
+                        ])
+                ])
             ]);
     }
 
