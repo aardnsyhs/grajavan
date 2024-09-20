@@ -111,9 +111,4 @@ class BookResource extends Resource
             'edit' => Pages\EditBook::route('/{record}/edit'),
         ];
     }
-
-    public static function getRedirectUrl(): string
-    {
-        return route('filament.resources.books.index');
-    }
 }
