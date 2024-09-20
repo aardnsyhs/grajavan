@@ -61,7 +61,7 @@ class BookTypeBookResource extends Resource
                 TextColumn::make('book.title')->label('Judul Buku')->sortable()->searchable(),
                 TextColumn::make('bookType.name')->label('Tipe Buku')->sortable()->searchable(),
                 TextColumn::make('stock')->numeric()->label('Stok')->sortable(),
-                TextColumn::make('price')->label('Harga')->sortable()->formatStateUsing(function ($state) {return 'Rp.' . number_format($state, 0, ',');}),
+                TextColumn::make('price')->label('Harga')->money('IDR')->sortable(),
                 TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true)
             ])
