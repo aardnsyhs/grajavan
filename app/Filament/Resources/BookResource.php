@@ -30,35 +30,41 @@ class BookResource extends Resource
         return $form
             ->schema([
                 Section::make([
-                    Grid::make()
-                ])->schema([
-                        TextInput::make('title')
+                    Grid::make(2)
+                        ->schema([
+                            TextInput::make('title')
+                                ->required()
+                                ->maxLength(255)
+                                ->label('Judul'),
+                            TextInput::make('author')
+                                ->required()
+                                ->maxLength(255)
+                                ->label('Pengarang'),
+                        ]),
+                    Grid::make(2)
+                        ->schema([
+                            Select::make('category_id')
+                                ->relationship('category', 'name')
+                                ->label('Kategori')
+                                ->required(),
+                            TextInput::make('year')
+                                ->numeric()
+                                ->required()
+                                ->label('Tahun Terbit'),
+                        ]),
+                    MarkdownEditor::make('description')
+                        ->label('Deskripsi')
                         ->required()
-                        ->maxLength(255)
-                        ->label('Judul'),
-                        TextInput::make('author')
-                            ->required()
-                            ->maxLength(255)
-                            ->label('Pengarang'),
-                        Select::make('category_id')
-                            ->relationship('category', 'name')
-                            ->label('Kategori')
-                            ->required(),
-                        TextInput::make('year')
-                            ->numeric()
-                            ->required()
-                            ->label('Tahun Terbit'),
-                        MarkdownEditor::make('description')
-                            ->label('Deskripsi')
-                            ->maxLength(1000),
-                        TextInput::make('rating')
-                            ->numeric()
-                            ->step(0.1)
-                            ->label('Rating'),
-                        FileUpload::make('image')
-                            ->image()
-                            ->required()
-                            ->directory('books')
+                        ->maxLength(1000),
+                    TextInput::make('rating')
+                        ->numeric()
+                        ->required()
+                        ->step(0.1)
+                        ->label('Rating'),
+                    FileUpload::make('image')
+                        ->image()
+                        ->required()
+                        ->directory('books')
                 ])
             ]);
     }
