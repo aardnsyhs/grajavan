@@ -61,7 +61,10 @@ class BookResource extends Resource
                         ->required()
                         ->step(0.1)
                         ->label('Rating'),
+                ]),
+                Section::make('Foto')->schema([
                     FileUpload::make('image')
+                        ->hiddenLabel()
                         ->image()
                         ->required()
                         ->directory('books')
