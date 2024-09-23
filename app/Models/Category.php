@@ -12,7 +12,7 @@ class Category extends Model
 
     protected $keyType = 'string';
 
-    protected $fillable = ["name"];
+    protected $fillable = ["name", "is_active", "image"];
 
     public $incrementing = false;
 
