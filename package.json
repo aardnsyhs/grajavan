@@ -17,6 +17,7 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
+        "preline": "^2.4.1",
         "sweetalert2": "^11.14.0"
     }
 }
