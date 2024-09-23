@@ -4,6 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\OrderResource\Pages;
 use App\Filament\Resources\OrderResource\Pages\ListOrders;
+use App\Filament\Resources\OrderResource\RelationManagers\AddressRelationManager;
 use App\Filament\Resources\Shop\OrderResource\Widgets\OrderStats;
 use App\Models\Book;
 use App\Models\Order;
@@ -221,7 +222,7 @@ class OrderResource extends Resource
     public static function getRelations(): array
     {
         return [
-            //
+            AddressRelationManager::class
         ];
     }
 
