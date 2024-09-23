@@ -16,7 +16,6 @@ return new class extends Migration
             $table->foreignUuid('book_id')->constrained()->onDelete('cascade');
             $table->foreignUuid('book_type_id')->constrained()->onDelete('cascade');
             $table->integer('stock')->default(0);
-            $table->decimal('price', 8, 2);
             $table->timestamps();
         });
     }

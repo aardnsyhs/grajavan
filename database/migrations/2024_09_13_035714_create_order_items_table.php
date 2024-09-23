@@ -15,9 +15,10 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->foreignUuid('order_id')->constrained()->onDelete('cascade');
             $table->foreignUuid('book_id')->constrained()->onDelete('cascade');
-            $table->foreignUuid('book_type_id')->constrained()->onDelete('cascade');
-            $table->integer('quantity');
-            $table->decimal('price', 8, 2);
+            // $table->foreignUuid('book_type_id')->constrained()->onDelete('cascade');
+            $table->integer('quantity')->unsigned();
+            $table->decimal('unit_price', 10, 2);
+            $table->decimal('total_price', 10, 2);
             $table->timestamps();
         });
     }

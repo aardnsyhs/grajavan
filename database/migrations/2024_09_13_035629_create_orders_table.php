@@ -14,8 +14,12 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->foreignUuid('user_id')->constrained()->onDelete('cascade');
-            $table->string('status')->default('pending');
-            $table->decimal('total_price', 8, 2);
+            $table->string('status');
+            $table->decimal('grand_total', 10, 2);
+            $table->string('payment_method');
+            $table->string('payment_status');
+            $table->string('shipping_method');
+            $table->string('notes');
             $table->timestamps();
         });
     }

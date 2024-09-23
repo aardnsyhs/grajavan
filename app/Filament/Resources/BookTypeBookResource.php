@@ -38,17 +38,12 @@ class BookTypeBookResource extends Resource
                                 ->label('Pilih Tipe')
                                 ->required(),
                         ]),
-                    Grid::make(2)
+                    Grid::make(1)
                         ->schema([
                             TextInput::make('stock')
                                 ->required()
                                 ->label('Stok')
                                 ->numeric(),
-                            TextInput::make('price')
-                                ->label('Harga')
-                                ->required()
-                                ->numeric()
-                                ->prefix('Rp.'),
                         ])
                 ])
             ]);
@@ -61,7 +56,6 @@ class BookTypeBookResource extends Resource
                 TextColumn::make('book.title')->label('Judul Buku')->sortable()->searchable(),
                 TextColumn::make('bookType.name')->label('Tipe Buku')->sortable()->searchable(),
                 TextColumn::make('stock')->numeric()->label('Stok')->sortable(),
-                TextColumn::make('price')->label('Harga')->money('IDR')->sortable(),
                 TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true)
             ])

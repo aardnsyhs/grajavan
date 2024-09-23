@@ -16,19 +16,21 @@ class ListOrders extends ListRecords
 
     protected function getHeaderActions(): array
     {
-        return [];
+        return [Actions\CreateAction::make()];
     }
 
     public function getTabs(): array
     {
         return [
             'all' => Tab::make('All'),
-            'Pending' => Tab::make('Pending')
-                ->modifyQueryUsing(fn ($query) => $query->where('status', 'Pending')),
+            'New' => Tab::make('New')
+                ->modifyQueryUsing(fn ($query) => $query->where('status', 'New')),
             'Processing' => Tab::make('Processing')
                 ->modifyQueryUsing(fn ($query) => $query->where('status', 'Processing')),
-            'Completed' => Tab::make('Completed')
-                ->modifyQueryUsing(fn ($query) => $query->where('status', 'Completed')),
+            'Shipped' => Tab::make('Shipped')
+                ->modifyQueryUsing(fn ($query) => $query->where('status', 'Shipped')),
+            'Delivered' => Tab::make('Delivered')
+                ->modifyQueryUsing(fn ($query) => $query->where('status', 'Delivered')),
             'Cancelled' => Tab::make('Cancelled')
                 ->modifyQueryUsing(fn ($query) => $query->where('status', 'Cancelled')),
         ];

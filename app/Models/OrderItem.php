@@ -17,7 +17,8 @@ class OrderItem extends Model
         'book_id',
         'book_type_id',
         'quantity',
-        'price',
+        'unit_price',
+        'total_price'
     ];
 
     public $incrementing = false;

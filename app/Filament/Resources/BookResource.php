@@ -57,11 +57,18 @@ class BookResource extends Resource
                         ->label('Deskripsi')
                         ->required()
                         ->maxLength(1000),
-                    TextInput::make('rating')
-                        ->numeric()
-                        ->required()
-                        ->step(0.1)
-                        ->label('Rating'),
+                    Grid::make(2)->schema([
+                        TextInput::make('rating')
+                            ->numeric()
+                            ->required()
+                            ->step(0.1)
+                            ->label('Rating'),
+                        TextInput::make('price')
+                            ->label('Harga')
+                            ->required()
+                            ->numeric()
+                            ->prefix('Rp.'),
+                    ])
                 ]),
                 Section::make('Foto')->schema([
                     FileUpload::make('image')
@@ -82,6 +89,7 @@ class BookResource extends Resource
                 TextColumn::make('author')->label('Pengarang')->sortable()->searchable(),
                 TextColumn::make('year')->label('Tahun')->sortable(),
                 TextColumn::make('rating')->label('Rating')->sortable(),
+                TextColumn::make('price')->label('Harga')->money('IDR')->sortable(),
                 TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true)
             ])

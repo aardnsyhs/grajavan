@@ -15,7 +15,11 @@ class Order extends Model
     protected $fillable = [
         'user_id',
         'status',
-        'total_price',
+        'grand_total',
+        'payment_method',
+        'payment_status',
+        'shipping_method',
+        'notes'
     ];
 
     public $incrementing = false;
@@ -36,7 +40,7 @@ class Order extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function orderItems()
+    public function items()
     {
         return $this->hasMany(OrderItem::class);
     }

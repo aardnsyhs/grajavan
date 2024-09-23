@@ -19,6 +19,7 @@ return new class extends Migration
             $table->decimal('rating', 2, 1)->default(0);
             $table->text('description')->nullable();
             $table->foreignUuid('category_id')->nullable()->constrained()->onDelete('set null');
+            $table->decimal('price', 10, 2)->nullable();
             $table->string('image');
             $table->timestamps();
         });

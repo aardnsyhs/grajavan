@@ -31,11 +31,11 @@ class BookTypeBook extends Model
     {
         return $this->belongsTo(Book::class, 'book_id');
     }
-     public function bookType()
-     {
-         return $this->belongsTo(BookType::class, 'book_type_id');
-     }
-     public function orderItems()
+    public function bookType()
+    {
+        return $this->belongsTo(BookType::class, 'book_type_id');
+    }
+    public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
     }
