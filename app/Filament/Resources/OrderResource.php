@@ -3,7 +3,10 @@
 namespace App\Filament\Resources;
 
 use App\Filament\Resources\OrderResource\Pages;
+use App\Filament\Resources\OrderResource\Pages\CreateOrder;
+use App\Filament\Resources\OrderResource\Pages\EditOrder;
 use App\Filament\Resources\OrderResource\Pages\ListOrders;
+use App\Filament\Resources\OrderResource\Pages\ViewOrder;
 use App\Filament\Resources\OrderResource\RelationManagers\AddressRelationManager;
 use App\Filament\Resources\Shop\OrderResource\Widgets\OrderStats;
 use App\Models\Book;
@@ -167,34 +170,34 @@ class OrderResource extends Resource
             ->columns([
                 TextColumn::make('user.name')->label('Customers')->sortable()->searchable(),
                 TextColumn::make('status')->badge()
-                ->colors([
-                    'info' => 'new',
-                    'warning' => 'processing',
-                    'info' => 'shipped',
-                    'success' => 'delivered',
-                    'danger' => 'cancelled',
-                ])->icons([
-                    'heroicon-o-sparkles' => 'new',
-                    'heroicon-o-truck' => 'shipped',
-                    'heroicon-o-arrow-path' => 'processing',
-                    'heroicon-o-check-circle' => 'delivered',
-                    'heroicon-o-x-circle' => 'cancelled'
-                ])
-                ->searchable()
-                ->sortable(),
+                    ->colors([
+                        'info' => 'new',
+                        'warning' => 'processing',
+                        'info' => 'shipped',
+                        'success' => 'delivered',
+                        'danger' => 'cancelled',
+                    ])->icons([
+                        'heroicon-o-sparkles' => 'new',
+                        'heroicon-o-truck' => 'shipped',
+                        'heroicon-o-arrow-path' => 'processing',
+                        'heroicon-o-check-circle' => 'delivered',
+                        'heroicon-o-x-circle' => 'cancelled'
+                    ])
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('payment_method')
-                ->searchable()
-                ->sortable(),
+                    ->searchable()
+                    ->sortable(),
                 TextColumn::make('payment_status')->badge()
-                ->colors([
-                    'warning' => 'pending',
-                    'success' => 'paid',
-                    'danger' => 'failed',
-                ])->icons([
-                    'heroicon-o-clock' => 'pending',
-                    'heroicon-o-check-circle' => 'paid',
-                    'heroicon-o-x-circle' => 'cancelled'
-                ]),
+                    ->colors([
+                        'warning' => 'pending',
+                        'success' => 'paid',
+                        'danger' => 'failed',
+                    ])->icons([
+                        'heroicon-o-clock' => 'pending',
+                        'heroicon-o-check-circle' => 'paid',
+                        'heroicon-o-x-circle' => 'cancelled'
+                    ]),
                 TextColumn::make('shipping_method')
                     ->sortable()
                     ->searchable(),
@@ -230,8 +233,9 @@ class OrderResource extends Resource
     {
         return [
             'index' => ListOrders::route('/'),
-            'create' => Pages\CreateOrder::route('/create'),
-            'edit' => Pages\EditOrder::route('/{record}/edit'),
+            'create' => CreateOrder::route('/create'),
+            'view' => ViewOrder::route('/{record}'),
+            'edit' => EditOrder::route('/{record}/edit'),
         ];
     }
 
