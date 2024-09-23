@@ -70,50 +70,21 @@
         </div>
         <div class="justify-center max-w-6xl px-4 py-4 mx-auto lg:py-0">
             <div class="grid grid-cols-1 gap-6 lg:grid-cols-4 md:grid-cols-2">
-                <div class="bg-white rounded-lg shadow-md dark:bg-gray-800">
-                    <a href="" class="">
-                        <img src="https://i.pinimg.com/originals/a0/97/c3/a097c3c89b6d9a14f52f9515395d5220.png"
-                            alt="" class="object-cover w-full h-64 rounded-t-lg">
-                    </a>
-                    <div class="p-5 text-center">
-                        <a href="" class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-300">
-                            Apple
+
+                @foreach ($bookTypes as $bookType)
+                    <div class="bg-white rounded-lg shadow-md dark:bg-gray-800" wire:key="{{ $bookType->id }}">
+                        <a href="" class="">
+                            <img src="{{ url('storage', $bookType->image) }}" alt="{{ $bookType->name }}"
+                                class="object-cover w-full h-64 rounded-t-lg">
                         </a>
+                        <div class="p-5 text-center">
+                            <a href=""
+                                class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-300">
+                                {{ $bookType->name }}
+                            </a>
+                        </div>
                     </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-md dark:bg-gray-800">
-                    <a href="" class="">
-                        <img src="https://i.pinimg.com/originals/1d/35/83/1d35833251dec0ad373ad7cbbbf4f3e2.png"
-                            alt="" class="object-cover w-full h-64 rounded-t-lg">
-                    </a>
-                    <div class="p-5 text-center">
-                        <a href="" class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-300">
-                            Samsung
-                        </a>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-md dark:bg-gray-800">
-                    <a href="" class="">
-                        <img src="https://salesindia.com/media/codazon_cache/brand/400x400/wysiwyg/codazon/main-content-22/Brand_logo/ONEPLUS_LOGO_.png"
-                            alt="" class="object-cover w-full h-64 rounded-t-lg">
-                    </a>
-                    <div class="p-5 text-center">
-                        <a href="" class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-300">
-                            One Plus
-                        </a>
-                    </div>
-                </div>
-                <div class="bg-white rounded-lg shadow-md dark:bg-gray-800">
-                    <a href="" class="">
-                        <img src="https://i.pinimg.com/originals/72/15/96/721596edd1de9db231a385d52a9081f8.png"
-                            alt="" class="object-cover w-full h-64 rounded-t-lg">
-                    </a>
-                    <div class="p-5 text-center">
-                        <a href="" class="text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-300">
-                            Xiaomi
-                        </a>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </section>
