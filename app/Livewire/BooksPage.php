@@ -24,6 +24,9 @@ class BooksPage extends Component
     #[Url]
     public $price_range = 350000;
 
+    #[Url]
+    public $sort = 'latest';
+
     public function render()
     {
         $bookQuery = Book::query()->where('is_active', 1);
@@ -38,6 +41,14 @@ class BooksPage extends Component
 
         if ($this->price_range) {
             $bookQuery->whereBetween('price', [0, $this->price_range]);
+        }
+
+        if ($this->sort === 'latest') {
+            $bookQuery->latest();
+        }
+
+        if ($this->sort === 'price') {
+            $bookQuery->orderBy('price');
         }
 
         return view('livewire.books-page', [
