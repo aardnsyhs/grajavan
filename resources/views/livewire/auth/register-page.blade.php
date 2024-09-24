@@ -34,7 +34,7 @@
                                     @enderror
                                 </div>
                                 @error('name')
-                                    <p class="hidden text-xs text-red-600 mt-2" id="name-error">{{ $message }}</p>
+                                    <p class="text-xs text-red-600 mt-2" id="name-error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div>
@@ -54,7 +54,7 @@
                                     @enderror
                                 </div>
                                 @error('email')
-                                    <p class="hidden text-xs text-red-600 mt-2" id="email-error">{{ $message }}</p>
+                                    <p class="text-xs text-red-600 mt-2" id="email-error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <div>
@@ -76,7 +76,7 @@
                                     @enderror
                                 </div>
                                 @error('password')
-                                    <p class="hidden text-xs text-red-600 mt-2" id="password-error">{{ $message }}</p>
+                                    <p class="text-xs text-red-600 mt-2" id="password-error">{{ $message }}</p>
                                 @enderror
                             </div>
                             <button type="submit"
