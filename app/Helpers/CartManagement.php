@@ -40,6 +40,40 @@ class CartManagement {
         return count($cart_items);
     }
 
+    // add item to cart with quantity
+    static public function addItemToCartWithQty($book_id, $qty = 1)
+    {
+        $cart_items = self::getCartItemsFromCookie();
+        $existing_item = null;
+
+        foreach ($cart_items as $key => $item) {
+            if ($item['book_id'] == $book_id) {
+                $existing_item = $key;
+                break;
+            }
+        }
+
+        if ($existing_item !== null) {
+            $cart_items[$existing_item]['quantity'] = $qty;
+            $cart_items[$existing_item]['total_price'] = $cart_items[$existing_item]['quantity'] * $cart_items[$existing_item]['unit_price'];
+        } else {
+            $book = Book::where('id', $book_id)->first(['id', 'title', 'price', 'image']);
+            if ($book) {
+                $cart_items[] = [
+                    'book_id' => $book_id,
+                    'title' => $book->title,
+                    'image' => $book->image,
+                    'quantity' => $qty,
+                    'unit_price' => $book->price,
+                    'total_price' => $book->price,
+                ];
+            }
+        }
+
+        self::addCartItemsToCookie($cart_items);
+        return count($cart_items);
+    }
+
     // remove item from cart
     static public function removeFromCart($book_id)
     {

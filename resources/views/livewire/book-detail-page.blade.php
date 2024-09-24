@@ -68,8 +68,9 @@
                         <div class="flex items-center gap-4">
                             <button wire:click.prevent="addToCart('{{ $book->id }}')"
                                 class="w-full py-4 text-lg font-semibold text-white bg-blue-600 rounded-lg shadow hover:bg-blue-700 dark:bg-blue-500 dark:hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300 dark:focus:ring-blue-700">
-                                <span wire:loading.remove>Add to Cart</span>
-                                <span wire:loading>Adding...</span>
+                                <span wire:loading.remove wire:target="addToCart('{{ $book->id }}')">Add to
+                                    Cart</span>
+                                <span wire:loading wire:target="addToCart('{{ $book->id }}')">Adding...</span>
                             </button>
                         </div>
                     </div>
