@@ -12,7 +12,18 @@ class Book extends Model
 
     protected $keyType = 'string';
 
-    protected $fillable = ["title", "author", "year", "rating", "description", "category_id", "image", "price", "is_active"];
+    protected $fillable = [
+        "title",
+        "author",
+        "year",
+        "rating",
+        "description",
+        "category_id",
+        "image",
+        "price",
+        "is_active",
+        "book_type_id"
+    ];
 
     public $incrementing = false;
 
@@ -41,5 +52,10 @@ class Book extends Model
     public function orderItems()
     {
         return $this->hasMany(OrderItem::class);
+    }
+
+    public function bookType()
+    {
+        return $this->belongsTo(BookType::class, 'book_type_id', 'id');
     }
 }

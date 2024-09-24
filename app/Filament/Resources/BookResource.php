@@ -75,7 +75,11 @@ class BookResource extends Resource
                             ->required()
                             ->numeric()
                             ->prefix('Rp.'),
-                    ])
+                    ]),
+                Select::make('book_type_id')
+                    ->relationship('bookType', 'name')
+                    ->label('Pilih Tipe')
+                    ->required()
                 ]),
                 Section::make('Foto')->schema([
                     FileUpload::make('image')
@@ -100,7 +104,7 @@ class BookResource extends Resource
                 TextColumn::make('year')->label('Tahun')->sortable(),
                 TextColumn::make('rating')->label('Rating')->sortable(),
                 TextColumn::make('price')->label('Harga')->money('IDR')->sortable(),
-                IconColumn::make('is_active')->boolean(),
+                IconColumn::make('is_active')->boolean()->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('created_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true),
                 TextColumn::make('updated_at')->dateTime()->sortable()->toggleable(isToggledHiddenByDefault: true)
             ])
