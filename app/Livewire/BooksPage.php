@@ -2,9 +2,12 @@
 
 namespace App\Livewire;
 
+use App\Helpers\CartManagement;
+use App\Livewire\Partials\Navbar;
 use App\Models\Book;
 use App\Models\BookType;
 use App\Models\Category;
+use Jantinnerezo\LivewireAlert\LivewireAlert;
 use Livewire\Attributes\Title;
 use Livewire\Attributes\Url;
 use Livewire\Component;
@@ -14,6 +17,7 @@ use Livewire\WithPagination;
 class BooksPage extends Component
 {
     use WithPagination;
+    use LivewireAlert;
 
     #[Url]
     public $selected_categories = [];
@@ -26,6 +30,20 @@ class BooksPage extends Component
 
     #[Url]
     public $sort = 'latest';
+
+    // add product to cart method
+    public function addToCart($book_id)
+    {
+        $total_count = CartManagement::addItemToCart($book_id);
+
+        $this->dispatch('update-cart-count', total_count: $total_count)->to(Navbar::class);
+
+        $this->alert('success', 'Buku berhasil ditambahkan ke keranjang!', [
+            'position' => 'bottom-end',
+            'timer' => 3000,
+            'toast' =>true
+        ]);
+    }
 
     public function render()
     {

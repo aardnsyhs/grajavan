@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Cookie;
 
 class CartManagement {
     // add item to cart
-    static public function addToCart($book_id)
+    static public function addItemToCart($book_id)
     {
         $cart_items = self::getCartItemsFromCookie();
         $existing_item = null;
@@ -23,7 +23,7 @@ class CartManagement {
             $cart_items[$existing_item]['quantity']++;
             $cart_items[$existing_item]['total_price'] = $cart_items[$existing_item]['quantity'] * $cart_items[$existing_item]['unit_price'];
         } else {
-            $book = Book::where('id', $book_id)->first(['id', 'title', 'price', 'iamge']);
+            $book = Book::where('id', $book_id)->first(['id', 'title', 'price', 'image']);
             if ($book) {
                 $cart_items[] = [
                     'book_id' => $book_id,
