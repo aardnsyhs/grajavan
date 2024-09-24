@@ -1,67 +1,86 @@
 <div class="w-full max-w-[85rem] py-10 px-4 sm:px-6 lg:px-8 mx-auto">
     <div class="container mx-auto px-4">
-        <h1 class="text-2xl font-semibold mb-4">Shopping Cart</h1>
-        <div class="flex flex-col md:flex-row gap-4">
+        <h1 class="text-3xl font-semibold mb-6">Keranjang</h1>
+        <div class="flex flex-col md:flex-row gap-8">
             <div class="md:w-3/4">
-                <div class="bg-white overflow-x-auto rounded-lg shadow-md p-6 mb-4">
-                    <table class="w-full">
+                <div class="bg-white rounded-lg shadow-lg p-8 mb-6">
+                    <table class="w-full table-auto">
                         <thead>
                             <tr>
-                                <th class="text-left font-semibold">Product</th>
-                                <th class="text-left font-semibold">Price</th>
-                                <th class="text-left font-semibold">Quantity</th>
-                                <th class="text-left font-semibold">Total</th>
-                                <th class="text-left font-semibold">Remove</th>
+                                <th class="text-left font-semibold py-4">Judul buku</th>
+                                <th class="text-center font-semibold py-4">Harga</th>
+                                <th class="text-center font-semibold py-4">Jumlah</th>
+                                <th class="text-center font-semibold py-4">Total</th>
+                                <th class="text-center font-semibold py-4">Hapus</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="py-4">
-                                    <div class="flex items-center">
-                                        <img class="h-16 w-16 mr-4" src="https://via.placeholder.com/150"
-                                            alt="Product image">
-                                        <span class="font-semibold">Product name</span>
-                                    </div>
-                                </td>
-                                <td class="py-4">Rp19.99</td>
-                                <td class="py-4">
-                                    <div class="flex items-center">
-                                        <button class="border rounded-md py-2 px-4 mr-2">-</button>
-                                        <span class="text-center w-8">1</span>
-                                        <button class="border rounded-md py-2 px-4 ml-2">+</button>
-                                    </div>
-                                </td>
-                                <td class="py-4">Rp19.99</td>
-                                <td><button
-                                        class="bg-slate-300 border-2 border-slate-400 rounded-lg px-3 py-1 hover:bg-red-500 hover:text-white hover:border-red-700">Remove</button>
-                                </td>
-                            </tr>
-                            <!-- More product rows -->
+                            @forelse($cart_items as $item)
+                                <tr wire:key="{{ $item['book_id'] }}" class="border-b last:border-none">
+                                    <td class="py-6">
+                                        <div class="flex items-center space-x-4">
+                                            <img class="h-20 w-16 object-cover rounded-lg shadow-sm"
+                                                src="{{ url('storage', $item['image']) }}" alt="{{ $item['title'] }}">
+                                            <span class="font-semibold text-gray-800">{{ $item['title'] }}</span>
+                                        </div>
+                                    </td>
+                                    <td class="py-6 text-center text-gray-600">
+                                        {{ Number::currency($item['unit_price'], 'IDR') }}</td>
+                                    <td class="py-6 text-center">
+                                        <div class="inline-flex items-center">
+                                            <button wire:click="decreaseQty('{{ $item['book_id'] }}')"
+                                                class="border border-gray-300 rounded-md py-1 px-3 hover:bg-gray-200">-</button>
+                                            <span class="text-center w-10 mx-2">{{ $item['quantity'] }}</span>
+                                            <button wire:click="increaseQty('{{ $item['book_id'] }}')"
+                                                class="border border-gray-300 rounded-md py-1 px-3 hover:bg-gray-200">+</button>
+                                        </div>
+                                    </td>
+                                    <td class="py-6 text-center text-gray-600">
+                                        {{ Number::currency($item['total_price'], 'IDR') }}</td>
+                                    <td class="py-6 text-center">
+                                        <button wire:click="removeItem('{{ $item['book_id'] }}')"
+                                            class="bg-red-500 text-white border-2 border-red-600 rounded-md px-2 py-1 hover:bg-red-700"><span
+                                                wire:loading.remove
+                                                wire:target="removeItem('{{ $item['book_id'] }}')">Hapus</span><span
+                                                wire:loading
+                                                wire:target="removeItem('{{ $item['book_id'] }}')">Menghapus...</span></button>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="5" class="text-center py-8 text-2xl font-semibold text-gray-500">
+                                        Tidak ada buku yang tersedia di keranjang
+                                    </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>
             </div>
             <div class="md:w-1/4">
-                <div class="bg-white rounded-lg shadow-md p-6">
-                    <h2 class="text-lg font-semibold mb-4">Summary</h2>
-                    <div class="flex justify-between mb-2">
+                <div class="bg-white rounded-lg shadow-lg p-6">
+                    <h2 class="text-xl font-semibold mb-4">Ringkasan Total</h2>
+                    <div class="flex justify-between mb-2 text-gray-600">
                         <span>Subtotal</span>
-                        <span>Rp19.99</span>
+                        <span>{{ Number::currency($grand_total, 'IDR') }}</span>
                     </div>
-                    <div class="flex justify-between mb-2">
-                        <span>Taxes</span>
-                        <span>Rp1.99</span>
+                    <div class="flex justify-between mb-2 text-gray-600">
+                        <span>Pajak</span>
+                        <span>{{ Number::currency(0, 'IDR') }}</span>
                     </div>
-                    <div class="flex justify-between mb-2">
-                        <span>Shipping</span>
-                        <span>Rp0.00</span>
+                    <div class="flex justify-between mb-2 text-gray-600">
+                        <span>Biaya pengiriman</span>
+                        <span>{{ Number::currency(0, 'IDR') }}</span>
                     </div>
-                    <hr class="my-2">
-                    <div class="flex justify-between mb-2">
-                        <span class="font-semibold">Total</span>
-                        <span class="font-semibold">Rp21.98</span>
+                    <hr class="my-4">
+                    <div class="flex justify-between mb-4 text-gray-800 font-semibold">
+                        <span>Grand Total</span>
+                        <span>{{ Number::currency($grand_total, 'IDR') }}</span>
                     </div>
-                    <button class="bg-blue-500 text-white py-2 px-4 rounded-lg mt-4 w-full">Checkout</button>
+                    @if ($cart_items)
+                        <button
+                            class="bg-blue-500 text-white py-2 px-4 rounded-lg w-full hover:bg-blue-600">Checkout</button>
+                    @endif
                 </div>
             </div>
         </div>
