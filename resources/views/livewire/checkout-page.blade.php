@@ -79,7 +79,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="text-lg font-semibold mb-4">
+                <div class="text-lg font-semibold mb-4 dark:text-white">
                     Select Payment Method
                 </div>
                 <ul class="grid w-full gap-6 md:grid-cols-2">
@@ -130,7 +130,7 @@
                 <div class="text-xl font-bold underline text-gray-700 dark:text-white mb-2">
                     ORDER SUMMARY
                 </div>
-                <div class="flex justify-between mb-2 font-bold">
+                <div class="flex justify-between mb-2 font-bold dark:text-white">
                     <span>
                         Subtotal
                     </span>
@@ -138,7 +138,7 @@
                         45,000.00
                     </span>
                 </div>
-                <div class="flex justify-between mb-2 font-bold">
+                <div class="flex justify-between mb-2 font-bold dark:text-white">
                     <span>
                         Taxes
                     </span>
@@ -146,7 +146,7 @@
                         0.00
                     </span>
                 </div>
-                <div class="flex justify-between mb-2 font-bold">
+                <div class="flex justify-between mb-2 font-bold dark:text-white">
                     <span>
                         Shipping Cost
                     </span>
@@ -155,7 +155,7 @@
                     </span>
                 </div>
                 <hr class="bg-slate-400 my-4 h-1 rounded">
-                <div class="flex justify-between mb-2 font-bold">
+                <div class="flex justify-between mb-2 font-bold dark:text-white">
                     <span>
                         Grand Total
                     </span>
