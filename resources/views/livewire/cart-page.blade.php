@@ -43,7 +43,8 @@
                                                 wire:loading.remove
                                                 wire:target="removeItem('{{ $item['book_id'] }}')">Hapus</span><span
                                                 wire:loading
-                                                wire:target="removeItem('{{ $item['book_id'] }}')">Menghapus...</span></button>
+                                                wire:target="removeItem('{{ $item['book_id'] }}')">Menghapus...</span>
+                                        </button>
                                     </td>
                                 </tr>
                             @empty
@@ -78,8 +79,8 @@
                         <span>{{ Number::currency($grand_total, 'IDR') }}</span>
                     </div>
                     @if ($cart_items)
-                        <button
-                            class="bg-blue-500 text-white py-2 px-4 rounded-lg w-full hover:bg-blue-600">Checkout</button>
+                        <a href="/checkout"
+                            class="bg-blue-500 block text-center text-white py-2 px-4 rounded-lg w-full hover:bg-blue-600">Checkout</a>
                     @endif
                 </div>
             </div>
