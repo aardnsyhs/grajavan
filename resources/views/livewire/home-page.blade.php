@@ -9,7 +9,7 @@
                     <h1
                         class="block text-3xl font-bold text-gray-800 sm:text-4xl lg:text-6xl lg:leading-tight dark:text-white">
                         Mulai perjalanan kamu dengan <span class="text-blue-600 dark:text-blue-400">Grajavan</span></h1>
-                    <p class="mt-3 text-lg text-gray-800 dark:text-gray-400">Temukan beragam koleksi buku mulai dari
+                    <p class="mt-3 text-lg text-gray-800 dark:text-gray-300">Temukan beragam koleksi buku mulai dari
                         novel, biografi, buku anak, buku akademik, hingga literatur klasik dan banyak lagi.</p>
 
                     <!-- Buttons -->
@@ -37,7 +37,7 @@
                 <div class="relative ms-4">
                     <img class="w-full rounded-md"
                         src="https://static.vecteezy.com/system/resources/previews/011/993/278/non_2x/3d-render-online-shopping-bag-using-credit-card-or-cash-for-future-use-credit-card-money-financial-security-on-mobile-3d-application-3d-shop-purchase-basket-retail-store-on-e-commerce-free-png.png"
-                        alt="Image Description">
+                        alt="Image Description" loading="lazy">
                     <div
                         class="absolute inset-0 -z-[1] bg-gradient-to-tr from-gray-200 via-white/0 to-white/0 w-full h-full rounded-md mt-4 -mb-4 me-4 -ms-4 lg:mt-6 lg:-mb-6 lg:me-6 lg:-ms-6 dark:from-slate-800 dark:via-slate-900/0 dark:to-slate-900/0">
                     </div>
@@ -46,7 +46,7 @@
         </div>
     </div>
 
-    {{-- Brand Selection --}}
+    {{-- Book Type Selection --}}
     <section class="py-20">
         <div class="max-w-xl mx-auto">
             <div class="text-center ">
@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-                <p class="mb-12 text-base text-center text-gray-500">
+                <p class="mb-12 text-base text-center text-gray-300">
                     Temukan buku-buku terbaik yang akan memperluas wawasan dan imajinasi Anda. Dari fiksi hingga
                     non-fiksi, kami menawarkan pilihan yang sesuai untuk setiap pembaca.
                 </p>
@@ -74,7 +74,7 @@
                     <div class="bg-white rounded-lg shadow-md dark:bg-gray-800" wire:key="{{ $bookType->id }}">
                         <a href="/books?selected_bookType[0]={{ $bookType->id }}" class="">
                             <img src="{{ url('storage', $bookType->image) }}" alt="{{ $bookType->name }}"
-                                class="object-cover w-full h-64 rounded-t-lg">
+                                class="object-cover w-full h-64 rounded-t-lg" loading="lazy">
                         </a>
                         <div class="p-5 text-center">
                             <a href=""
@@ -104,7 +104,7 @@
                         </div>
                     </div>
                 </div>
-                <p class="mb-12 text-base text-center text-gray-500">
+                <p class="mb-12 text-base text-center text-gray-300">
                     Temukan berbagai kategori buku mulai dari fiksi, non-fiksi, biografi, hingga buku-buku pendidikan.
                     Jelajahi pilihan kami untuk menemukan bacaan yang sesuai dengan minat Anda.
                 </p>
@@ -120,7 +120,8 @@
                             <div class="flex justify-between items-center">
                                 <div class="flex items-center">
                                     <img class="h-[2.375rem] w-[2.375rem] rounded-full"
-                                        src="{{ url('storage', $category->image) }}" alt="{{ $category->name }}">
+                                        src="{{ url('storage', $category->image) }}" alt="{{ $category->name }}"
+                                        loading="lazy">
                                     <div class="ms-3">
                                         <h3
                                             class="group-hover:text-blue-600 font-semibold text-gray-800 dark:group-hover:text-gray-400 dark:text-gray-200">
@@ -161,7 +162,7 @@
                             </div>
                         </div>
                     </div>
-                    <p class="mb-12 text-base text-center text-gray-500">
+                    <p class="mb-12 text-base text-center text-gray-300">
                         Lihat apa yang dikatakan pembaca tentang buku-buku favorit mereka. Ulasan dari pelanggan kami
                         akan membantu Anda menemukan bacaan terbaik yang sesuai dengan selera Anda.
                     </p>
@@ -174,18 +175,18 @@
                         <div class="flex items-center px-6 mb-2 md:mb-0 ">
                             <div class="flex mr-2 rounded-full">
                                 <img src="https://i.postimg.cc/rF6G0Dh9/pexels-emmy-e-2381069.jpg" alt=""
-                                    class="object-cover w-12 h-12 rounded-full">
+                                    class="object-cover w-12 h-12 rounded-full" loading="lazy">
                             </div>
                             <div>
                                 <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-300">
                                     Adren Roy</h2>
-                                <p class="text-xs text-gray-500 dark:text-gray-400">Web Designer</p>
+                                <p class="text-xs text-gray-300 dark:text-gray-300">Web Designer</p>
                             </div>
                         </div>
-                        <p class="px-6 text-base font-medium text-gray-600 dark:text-gray-400"> Joined 12, SEP , 2022
+                        <p class="px-6 text-base font-medium text-gray-600 dark:text-gray-300"> Joined 12, SEP , 2022
                         </p>
                     </div>
-                    <p class="px-6 mb-6 text-base text-gray-500 dark:text-gray-400">
+                    <p class="px-6 mb-6 text-base text-gray-300 dark:text-gray-300">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem cupiditate similique,
                         iure minus sed fugit obcaecati minima quam reiciendis dicta!
                     </p>
@@ -241,15 +242,15 @@
                                     </a>
                                 </li>
                             </ul>
-                            <h2 class="text-sm text-gray-500 dark:text-gray-400">Rating:<span
+                            <h2 class="text-sm text-gray-300 dark:text-gray-300">Rating:<span
                                     class="font-semibold text-gray-600 dark:text-gray-300">
                                     3.0</span>
                             </h2>
                         </div>
                         <div
-                            class="flex items-center px-6 space-x-1 text-sm font-medium text-gray-500 dark:text-gray-400">
+                            class="flex items-center px-6 space-x-1 text-sm font-medium text-gray-300 dark:text-gray-300">
                             <div class="flex items-center">
-                                <div class="flex mr-3 text-sm text-gray-700 dark:text-gray-400">
+                                <div class="flex mr-3 text-sm text-gray-700 dark:text-gray-300">
                                     <a href="#">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor"
@@ -262,7 +263,7 @@
                                     </a>
                                     <span>12</span>
                                 </div>
-                                <div class="flex text-sm text-gray-700 dark:text-gray-400">
+                                <div class="flex text-sm text-gray-700 dark:text-gray-300">
                                     <a href="#" class="inline-flex hover:underline">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="w-4 h-4 mr-1 text-blue-400 bi bi-chat"
@@ -282,18 +283,18 @@
                         <div class="flex items-center px-6 mb-2 md:mb-0 ">
                             <div class="flex mr-2 rounded-full">
                                 <img src="https://i.postimg.cc/q7pv50zT/pexels-edmond-dant-s-4342352.jpg"
-                                    alt="" class="object-cover w-12 h-12 rounded-full">
+                                    alt="" class="object-cover w-12 h-12 rounded-full" loading="lazy">
                             </div>
                             <div>
                                 <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-300">
                                     Sonira Roy</h2>
-                                <p class="text-xs text-gray-500 dark:text-gray-400">Manager</p>
+                                <p class="text-xs text-gray-300 dark:text-gray-300">Manager</p>
                             </div>
                         </div>
-                        <p class="px-6 text-base font-medium text-gray-600 dark:text-gray-400"> Joined 12, SEP , 2022
+                        <p class="px-6 text-base font-medium text-gray-600 dark:text-gray-300"> Joined 12, SEP , 2022
                         </p>
                     </div>
-                    <p class="px-6 mb-6 text-base text-gray-500 dark:text-gray-400">
+                    <p class="px-6 mb-6 text-base text-gray-300 dark:text-gray-300">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem cupiditate similique,
                         iure minus sed fugit obcaecati minima quam reiciendis dicta!
                     </p>
@@ -349,15 +350,15 @@
                                     </a>
                                 </li>
                             </ul>
-                            <h2 class="text-sm text-gray-500 dark:text-gray-400">Rating:<span
+                            <h2 class="text-sm text-gray-300 dark:text-gray-300">Rating:<span
                                     class="font-semibold text-gray-600 dark:text-gray-300">
                                     3.0</span>
                             </h2>
                         </div>
                         <div
-                            class="flex items-center px-6 space-x-1 text-sm font-medium text-gray-500 dark:text-gray-400">
+                            class="flex items-center px-6 space-x-1 text-sm font-medium text-gray-300 dark:text-gray-300">
                             <div class="flex items-center">
-                                <div class="flex mr-3 text-sm text-gray-700 dark:text-gray-400">
+                                <div class="flex mr-3 text-sm text-gray-700 dark:text-gray-300">
                                     <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                                             height="16" fill="currentColor"
                                             class="w-4 h-4 mr-1 text-blue-400 bi bi-hand-thumbs-up-fill"
@@ -368,7 +369,7 @@
                                         </svg></a>
                                     <span>12</span>
                                 </div>
-                                <div class="flex text-sm text-gray-700 dark:text-gray-400">
+                                <div class="flex text-sm text-gray-700 dark:text-gray-300">
                                     <a href="#" class="inline-flex hover:underline">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="w-4 h-4 mr-1 text-blue-400 bi bi-chat"
@@ -388,18 +389,18 @@
                         <div class="flex items-center px-6 mb-2 md:mb-0 ">
                             <div class="flex mr-2 rounded-full">
                                 <img src="https://i.postimg.cc/JzmrHQmk/pexels-pixabay-220453.jpg" alt=""
-                                    class="object-cover w-12 h-12 rounded-full">
+                                    class="object-cover w-12 h-12 rounded-full" loading="lazy">
                             </div>
                             <div>
                                 <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-300">
                                     William harry</h2>
-                                <p class="text-xs text-gray-500 dark:text-gray-400">Marketing Officer</p>
+                                <p class="text-xs text-gray-300 dark:text-gray-300">Marketing Officer</p>
                             </div>
                         </div>
-                        <p class="px-6 text-base font-medium text-gray-600 dark:text-gray-400"> Joined 12, SEP , 2022
+                        <p class="px-6 text-base font-medium text-gray-600 dark:text-gray-300"> Joined 12, SEP , 2022
                         </p>
                     </div>
-                    <p class="px-6 mb-6 text-base text-gray-500 dark:text-gray-400">
+                    <p class="px-6 mb-6 text-base text-gray-300 dark:text-gray-300">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem cupiditate similique,
                         iure minus sed fugit obcaecati minima quam reiciendis dicta!
                     </p>
@@ -455,15 +456,15 @@
                                     </a>
                                 </li>
                             </ul>
-                            <h2 class="text-sm text-gray-500 dark:text-gray-400">Rating:<span
+                            <h2 class="text-sm text-gray-300 dark:text-gray-300">Rating:<span
                                     class="font-semibold text-gray-600 dark:text-gray-300">
                                     3.0</span>
                             </h2>
                         </div>
                         <div
-                            class="flex items-center px-6 space-x-1 text-sm font-medium text-gray-500 dark:text-gray-400">
+                            class="flex items-center px-6 space-x-1 text-sm font-medium text-gray-300 dark:text-gray-300">
                             <div class="flex items-center">
-                                <div class="flex mr-3 text-sm text-gray-700 dark:text-gray-400">
+                                <div class="flex mr-3 text-sm text-gray-700 dark:text-gray-300">
                                     <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                                             height="16" fill="currentColor"
                                             class="w-4 h-4 mr-1 text-blue-400 bi bi-hand-thumbs-up-fill"
@@ -474,7 +475,7 @@
                                         </svg></a>
                                     <span>12</span>
                                 </div>
-                                <div class="flex text-sm text-gray-700 dark:text-gray-400">
+                                <div class="flex text-sm text-gray-700 dark:text-gray-300">
                                     <a href="#" class="inline-flex hover:underline">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="w-4 h-4 mr-1 text-blue-400 bi bi-chat"
@@ -494,18 +495,18 @@
                         <div class="flex items-center px-6 mb-2 md:mb-0 ">
                             <div class="flex mr-2 rounded-full">
                                 <img src="https://i.postimg.cc/4NMZPYdh/pexels-dinielle-de-veyra-4195342.jpg"
-                                    alt="" class="object-cover w-12 h-12 rounded-full">
+                                    alt="" class="object-cover w-12 h-12 rounded-full" loading="lazy">
                             </div>
                             <div>
                                 <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-300">
                                     James jack</h2>
-                                <p class="text-xs text-gray-500 dark:text-gray-400">Java Programmer</p>
+                                <p class="text-xs text-gray-300 dark:text-gray-300">Java Programmer</p>
                             </div>
                         </div>
-                        <p class="px-6 text-base font-medium text-gray-600 dark:text-gray-400"> Joined 12, SEP , 2022
+                        <p class="px-6 text-base font-medium text-gray-600 dark:text-gray-300"> Joined 12, SEP , 2022
                         </p>
                     </div>
-                    <p class="px-6 mb-6 text-base text-gray-500 dark:text-gray-400">
+                    <p class="px-6 mb-6 text-base text-gray-300 dark:text-gray-300">
                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Autem cupiditate similique,
                         iure minus sed fugit obcaecati minima quam reiciendis dicta!
                     </p>
@@ -561,15 +562,15 @@
                                     </a>
                                 </li>
                             </ul>
-                            <h2 class="text-sm text-gray-500 dark:text-gray-400">Rating:<span
+                            <h2 class="text-sm text-gray-300 dark:text-gray-300">Rating:<span
                                     class="font-semibold text-gray-600 dark:text-gray-300">
                                     3.0</span>
                             </h2>
                         </div>
                         <div
-                            class="flex items-center px-6 space-x-1 text-sm font-medium text-gray-500 dark:text-gray-400">
+                            class="flex items-center px-6 space-x-1 text-sm font-medium text-gray-300 dark:text-gray-300">
                             <div class="flex items-center">
-                                <div class="flex mr-3 text-sm text-gray-700 dark:text-gray-400">
+                                <div class="flex mr-3 text-sm text-gray-700 dark:text-gray-300">
                                     <a href="#"><svg xmlns="http://www.w3.org/2000/svg" width="16"
                                             height="16" fill="currentColor"
                                             class="w-4 h-4 mr-1 text-blue-400 bi bi-hand-thumbs-up-fill"
@@ -580,7 +581,7 @@
                                         </svg></a>
                                     <span>12</span>
                                 </div>
-                                <div class="flex text-sm text-gray-700 dark:text-gray-400">
+                                <div class="flex text-sm text-gray-700 dark:text-gray-300">
                                     <a href="#" class="inline-flex hover:underline">
                                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="w-4 h-4 mr-1 text-blue-400 bi bi-chat"

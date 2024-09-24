@@ -5,7 +5,8 @@
                 <div class="w-full mb-8 md:w-1/2 md:mb-0" x-data="{ mainImage: '{{ url('storage', $book->image) }}' }">
                     <div class="sticky top-0 z-50 overflow-hidden">
                         <div class="relative mb-6 lg:mb-10 lg:h-auto">
-                            <img x-bind:src="mainImage" alt="" class="object-contain w-full max-h-96">
+                            <img x-bind:src="mainImage" alt="" class="object-contain w-full max-h-96"
+                                loading="lazy">
                         </div>
                         <div class="px-6 pb-6 mt-6 border-t border-gray-300 dark:border-gray-400">
                             <div class="flex items-center mt-6 space-x-2">

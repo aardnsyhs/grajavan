@@ -144,7 +144,7 @@
                                 <div class="flex items-center">
                                     <img class="h-16 w-16 mr-4"
                                         src="http://localhost:8000/storage/products/01HND3J5XS7ZC5J84BK5YDM6Z2.jpg"
-                                        alt="Product image">
+                                        alt="Product image" loading="lazy">
                                     <span class="font-semibold">Samsung Galaxy Watch6</span>
                                 </div>
                             </td>
@@ -159,7 +159,7 @@
                                 <div class="flex items-center">
                                     <img class="h-16 w-16 mr-4"
                                         src="http://localhost:8000/storage/products/01HND30J0P7C6MWQ1XQK7YDQKA.jpg"
-                                        alt="Product image">
+                                        alt="Product image" loading="lazy">
                                     <span class="font-semibold">Samsung Galaxy Book3</span>
                                 </div>
                             </td>

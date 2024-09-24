@@ -20,7 +20,8 @@
                                     <td class="py-6">
                                         <div class="flex items-center space-x-4">
                                             <img class="h-20 w-16 object-cover rounded-lg shadow-sm"
-                                                src="{{ url('storage', $item['image']) }}" alt="{{ $item['title'] }}">
+                                                src="{{ url('storage', $item['image']) }}" alt="{{ $item['title'] }}"
+                                                loading="lazy">
                                             <span class="font-semibold text-gray-800">{{ $item['title'] }}</span>
                                         </div>
                                     </td>

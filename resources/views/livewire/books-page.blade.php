@@ -70,7 +70,7 @@
                                     <div class="relative bg-gray-200">
                                         <a href="/books/{{ $book->id }}" class="">
                                             <img src="{{ url('storage', $book->image) }}" alt="{{ $book->title }}"
-                                                class="object-contain w-full h-56 mx-auto">
+                                                class="object-contain w-full h-56 mx-auto" loading="lazy">
                                         </a>
                                     </div>
                                     <div class="p-3 flex-grow">

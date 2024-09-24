@@ -177,7 +177,8 @@
                         <div class="flex items-center">
                             <div class="flex-shrink-0">
                                 <img alt="Neil image" class="w-12 h-12 rounded-full"
-                                    src="https://iplanet.one/cdn/shop/files/iPhone_15_Pro_Max_Blue_Titanium_PDP_Image_Position-1__en-IN_1445x.jpg?v=1695435917">
+                                    src="https://iplanet.one/cdn/shop/files/iPhone_15_Pro_Max_Blue_Titanium_PDP_Image_Position-1__en-IN_1445x.jpg?v=1695435917"
+                                    loading="lazy">
                                 </img>
                             </div>
                             <div class="flex-1 min-w-0 ms-4">
@@ -198,7 +199,8 @@
                         <div class="flex items-center">
                             <div class="flex-shrink-0">
                                 <img alt="Neil image" class="w-12 h-12 rounded-full"
-                                    src="https://iplanet.one/cdn/shop/files/iPhone_15_Pro_Max_Blue_Titanium_PDP_Image_Position-1__en-IN_1445x.jpg?v=1695435917">
+                                    src="https://iplanet.one/cdn/shop/files/iPhone_15_Pro_Max_Blue_Titanium_PDP_Image_Position-1__en-IN_1445x.jpg?v=1695435917"
+                                    loading="lazy">
                                 </img>
                             </div>
                             <div class="flex-1 min-w-0 ms-4">
@@ -219,7 +221,8 @@
                         <div class="flex items-center">
                             <div class="flex-shrink-0">
                                 <img alt="Neil image" class="w-12 h-12 rounded-full"
-                                    src="https://iplanet.one/cdn/shop/files/iPhone_15_Pro_Max_Blue_Titanium_PDP_Image_Position-1__en-IN_1445x.jpg?v=1695435917">
+                                    src="https://iplanet.one/cdn/shop/files/iPhone_15_Pro_Max_Blue_Titanium_PDP_Image_Position-1__en-IN_1445x.jpg?v=1695435917"
+                                    loading="lazy">
                                 </img>
                             </div>
                             <div class="flex-1 min-w-0 ms-4">
