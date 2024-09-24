@@ -12,7 +12,7 @@ class Book extends Model
 
     protected $keyType = 'string';
 
-    protected $fillable = ["title", "author", "year", "rating", "description", "category_id", "image", "price"];
+    protected $fillable = ["title", "author", "year", "rating", "description", "category_id", "image", "price", "is_active"];
 
     public $incrementing = false;
 
