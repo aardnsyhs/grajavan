@@ -17,6 +17,7 @@
         "laravel/sanctum": "^3.3",
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.5",
+        "midtrans/midtrans-php": "^2.6",
         "stripe/stripe-php": "^15.10"
     },
     "require-dev": {

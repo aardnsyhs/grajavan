@@ -8,7 +8,7 @@ use App\Filament\Resources\OrderResource\Pages\EditOrder;
 use App\Filament\Resources\OrderResource\Pages\ListOrders;
 use App\Filament\Resources\OrderResource\Pages\ViewOrder;
 use App\Filament\Resources\OrderResource\RelationManagers\AddressRelationManager;
-use App\Filament\Resources\Shop\OrderResource\Widgets\OrderStats;
+// use App\Filament\Resources\Shop\OrderResource\Widgets\OrderStats;
 use App\Models\Book;
 use App\Models\Order;
 use Filament\Forms\Components\Group;
@@ -253,7 +253,7 @@ class OrderResource extends Resource
     public static function getWidgets(): array
     {
         return [
-            OrderStats::class,
+            // OrderStats::class,
         ];
     }
 }
