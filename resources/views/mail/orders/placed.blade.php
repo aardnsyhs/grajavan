@@ -1,12 +1,12 @@
 <x-mail::message>
-# Introduction
+    # Pesanan berhasil dibuat!
 
-The body of your message.
+    Terimakasih sudah memesan. Nomor pesanan kamu adalah: {{ $order->id }}
 
-<x-mail::button :url="''">
-Button Text
-</x-mail::button>
+    <x-mail::button :url="$url">
+        Lihat pesanan
+    </x-mail::button>
 
-Thanks,<br>
-{{ config('app.name') }}
+    Thanks,<br>
+    {{ config('app.name') }}
 </x-mail::message>
