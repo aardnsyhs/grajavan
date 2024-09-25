@@ -88,7 +88,7 @@ class CheckoutPage extends Component
                 'customer_email' => auth()->user()->email,
                 'line_items' => $line_items,
                 'mode' => 'payment',
-                'success_url' => route('success', ['session_id' => '{CHECKOUT_SESSION_ID}']),
+                'success_url' => url('/success?session_id={CHECKOUT_SESSION_ID}'),
                 'cancel_url' => route('cancel'),
             ]);
 
