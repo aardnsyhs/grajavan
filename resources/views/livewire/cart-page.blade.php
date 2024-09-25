@@ -67,8 +67,6 @@
                     </div>
                 @endforelse
             </div>
-
-            <!-- Ringkasan Total -->
             <div class="lg:w-1/3 space-y-6 mt-6 lg:mt-0">
                 <div
                     class="space-y-4 rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 sm:p-6">
