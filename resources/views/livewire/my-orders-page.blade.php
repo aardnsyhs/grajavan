@@ -35,14 +35,12 @@
                                     'delivered' => 'bg-green-700 py-1 px-3 rounded text-white shadow',
                                     'cancelled' => 'bg-red-500 py-1 px-3 rounded text-white shadow',
                                 ];
-
                                 $paymentStatusClasses = [
                                     'paid' => 'bg-green-500 py-1 px-3 rounded text-white shadow',
                                     'pending' => 'bg-yellow-500 py-1 px-3 rounded text-white shadow',
                                     'failed' => 'bg-red-500 py-1 px-3 rounded text-white shadow',
                                 ];
                             @endphp
-
                             @foreach ($orders as $order)
                                 <tr class="odd:bg-white even:bg-gray-100 dark:odd:bg-slate-900 dark:even:bg-slate-800"
                                     wire:key="{{ $order->id }}">
