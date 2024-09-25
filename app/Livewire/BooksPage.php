@@ -29,7 +29,7 @@ class BooksPage extends Component
     public $price_range = 350000;
 
     #[Url]
-    public $sort = 'latest';
+    public $sort = '';
 
     // add product to cart method
     public function addToCart($book_id)
