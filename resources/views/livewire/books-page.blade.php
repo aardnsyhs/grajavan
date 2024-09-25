@@ -37,7 +37,8 @@
                         <h2 class="text-2xl font-bold dark:text-gray-400">Harga</h2>
                         <div class="w-16 pb-2 mb-6 border-b border-rose-600 dark:border-gray-400"></div>
                         <div>
-                            <div class="font-semibold">{{ Number::currency($price_range, 'IDR') }}</div>
+                            <div class="font-semibold dark:text-slate-300">{{ Number::currency($price_range, 'IDR') }}
+                            </div>
                             <input type="range" wire:model.live="price_range"
                                 class="w-full h-1 mb-4 bg-blue-100 rounded appearance-none cursor-pointer"
                                 max="500000" value="300000" step="1000">
@@ -102,14 +103,9 @@
                             </div>
                         @endforeach
                     </div>
-                    <!-- pagination start -->
-                    <div class="flex justify-end mt-6">
-                        {{ $books->links() }}
-                    </div>
-                    <!-- pagination end -->
+                    {{ $books->links() }}
                 </div>
             </div>
         </div>
     </section>
-
 </div>
