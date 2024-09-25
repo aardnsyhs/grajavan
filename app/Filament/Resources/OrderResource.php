@@ -53,7 +53,8 @@ class OrderResource extends Resource
                             ->options([
                                 'transfer' => 'Transfer Bank',
                                 'e-wallet' => 'E-Wallet',
-                                'cod' => 'Cash On Delivery'
+                                'cod' => 'Cash On Delivery',
+                                'stripe' => 'Stripe'
                             ])
                             ->label('Metode pembayaran')
                             ->required(),

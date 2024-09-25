@@ -9,6 +9,7 @@ use Filament\Widgets\StatsOverviewWidget as BaseWidget;
 use Filament\Widgets\StatsOverviewWidget\Stat;
 use Flowframe\Trend\Trend;
 use Flowframe\Trend\TrendValue;
+use Illuminate\Support\Number;
 
 class OrderStats extends BaseWidget
 {
@@ -39,7 +40,7 @@ class OrderStats extends BaseWidget
                         ->toArray()
                 ),
             Stat::make('Open orders', $this->getPageTableQuery()->whereIn('status', ['open', 'new'])->count()),
-            Stat::make('Average price', 'Rp' . number_format($this->getPageTableQuery()->avg('grand_total'), 2)),
+            Stat::make('Average price', Number::currency($this->getPageTableQuery()->avg('grand_total'), 'IDR')),
         ];
     }
 }
