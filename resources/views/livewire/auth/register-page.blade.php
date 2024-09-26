@@ -1,8 +1,8 @@
 <div class="flex flex-col items-center justify-center px-6 py-4 mx-auto lg:py-0 mt-16 mb-24">
-    <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
+    <span class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">
         <img class="w-14 h-14 mr-2" src="{{ asset('images/logo_javan.png') }}" alt="logo">
         Grajavan
-    </a>
+    </span>
     <div
         class="w-full bg-white rounded-lg shadow dark:border md:mt-0 sm:max-w-md xl:p-0 dark:bg-gray-800 dark:border-gray-700">
         <div class="p-6 space-y-4 md:space-y-6 sm:p-8">
@@ -10,6 +10,10 @@
                 Create an account
             </h1>
             <form wire:submit.prevent="save" class="space-y-4 md:space-y-6">
+                @if (session('error'))
+                    <div class="bg-red-500 text-sm text-white rounded-lg p-4 mb-4" role="alert">
+                        {{ session('error') }}</div>
+                @endif
                 <div>
                     <label for="name"
                         class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
