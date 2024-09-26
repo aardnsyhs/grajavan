@@ -2,65 +2,36 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Payment;
-use App\Http\Requests\StorePaymentRequest;
-use App\Http\Requests\UpdatePaymentRequest;
+use App\Models\Order;
+use Illuminate\Support\Facades\Request;
+use Midtrans\Config as MidtransConfig;
+use Midtrans\Notification;
 
 class PaymentController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
-    public function index()
+    public function midtransNotification(Request $request)
     {
-        //
-    }
+        MidtransConfig::$serverKey = config('midtrans.server_key');
+        MidtransConfig::$isProduction = config('midtrans.is_production');
+        MidtransConfig::$isSanitized = true;
+        MidtransConfig::$is3ds = true;
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+        $notification = new Notification();
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StorePaymentRequest $request)
-    {
-        //
-    }
+        $transaction_status = $notification->transaction_status;
+        $order_id = $notification->order_id;
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Payment $payment)
-    {
-        //
-    }
+        $order = Order::where('order_id', $order_id)->first();
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Payment $payment)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdatePaymentRequest $request, Payment $payment)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Payment $payment)
-    {
-        //
+        if ($order) {
+            if ($transaction_status == 'settlement') {
+                $order->payment_status = 'paid';
+                $order->status = 'completed';
+                $order->save();
+                
+                return redirect()->route('success', ['order_id' => $order_id]);
+            } else {
+            }
+        }
     }
 }

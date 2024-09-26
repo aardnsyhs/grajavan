@@ -132,14 +132,14 @@
                                 class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
                                 <div class="flex items-start">
                                     <div class="flex h-5 items-center">
-                                        <input id="cod" aria-describedby="cod-text" type="radio"
-                                            wire:model="payment_method" value="cod"
+                                        <input id="cod" type="radio" wire:model="payment_method"
+                                            value="cod"
                                             class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
                                     </div>
                                     <div class="ms-4 text-sm">
                                         <label for="cod"
-                                            class="font-medium leading-none text-gray-900 dark:text-white"> Cash On
-                                            Delivery </label>
+                                            class="font-medium leading-none text-gray-900 dark:text-white">Cash On
+                                            Delivery</label>
                                     </div>
                                 </div>
                             </div>
@@ -147,14 +147,13 @@
                                 class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
                                 <div class="flex items-start">
                                     <div class="flex h-5 items-center">
-                                        <input id="stripe" aria-describedby="stripe-text" type="radio"
-                                            wire:model="payment_method" value="stripe"
+                                        <input id="stripe" type="radio" wire:model="payment_method"
+                                            value="stripe"
                                             class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
                                     </div>
                                     <div class="ms-4 text-sm">
                                         <label for="stripe"
-                                            class="font-medium leading-none text-gray-900 dark:text-white"> Stripe
-                                        </label>
+                                            class="font-medium leading-none text-gray-900 dark:text-white">Stripe</label>
                                     </div>
                                 </div>
                             </div>
@@ -162,14 +161,13 @@
                                 class="rounded-lg border border-gray-200 bg-gray-50 p-4 ps-4 dark:border-gray-700 dark:bg-gray-800">
                                 <div class="flex items-start">
                                     <div class="flex h-5 items-center">
-                                        <input id="midtrans" aria-describedby="midtrans-text" type="radio"
-                                            wire:model="payment_method" value="midtrans"
+                                        <input id="midtrans" type="radio" wire:model="payment_method"
+                                            value="midtrans"
                                             class="h-4 w-4 border-gray-300 bg-white text-primary-600 focus:ring-2 focus:ring-primary-600 dark:border-gray-600 dark:bg-gray-700 dark:ring-offset-gray-800 dark:focus:ring-primary-600" />
                                     </div>
                                     <div class="ms-4 text-sm">
                                         <label for="midtrans"
-                                            class="font-medium leading-none text-gray-900 dark:text-white"> Midtrans
-                                        </label>
+                                            class="font-medium leading-none text-gray-900 dark:text-white">Midtrans</label>
                                     </div>
                                 </div>
                             </div>
@@ -222,7 +220,7 @@
                             <li class="py-4" wire:key="{{ $item['book_id'] }}">
                                 <div class="flex items-center">
                                     <div class="flex-shrink-0">
-                                        <img alt="{{ $item['title'] }}" class="w-12 h-12 rounded-full"
+                                        <img alt="{{ $item['title'] }}" class="w-12 h-12 object-contain"
                                             src="{{ url('storage', $item['image']) }}" loading="lazy" />
                                     </div>
                                     <div class="flex-1 min-w-0 ms-4">
