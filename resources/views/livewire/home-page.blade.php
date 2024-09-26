@@ -62,7 +62,7 @@
                         </div>
                     </div>
                 </div>
-                <p class="mb-12 text-base text-center text-gray-300">
+                <p class="mb-12 text-base text-center text-slate-700 dark:text-gray-300">
                     Temukan buku-buku terbaik yang akan memperluas wawasan dan imajinasi Anda. Dari fiksi hingga
                     non-fiksi, kami menawarkan pilihan yang sesuai untuk setiap pembaca.
                 </p>
@@ -104,7 +104,7 @@
                         </div>
                     </div>
                 </div>
-                <p class="mb-12 text-base text-center text-gray-300">
+                <p class="mb-12 text-base text-center text-slate-700 dark:text-gray-300">
                     Temukan berbagai kategori buku mulai dari fiksi, non-fiksi, biografi, hingga buku-buku pendidikan.
                     Jelajahi pilihan kami untuk menemukan bacaan yang sesuai dengan minat Anda.
                 </p>
@@ -162,7 +162,7 @@
                             </div>
                         </div>
                     </div>
-                    <p class="mb-12 text-base text-center text-gray-300">
+                    <p class="mb-12 text-base text-center text-slate-700 dark:text-gray-300">
                         Lihat apa yang dikatakan pembaca tentang buku-buku favorit mereka. Ulasan dari pelanggan kami
                         akan membantu Anda menemukan bacaan terbaik yang sesuai dengan selera Anda.
                     </p>
