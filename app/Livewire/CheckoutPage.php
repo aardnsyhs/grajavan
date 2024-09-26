@@ -6,6 +6,7 @@ use App\Helpers\CartManagement;
 use App\Mail\OrderPlaced;
 use App\Models\Address;
 use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Http\Request;
@@ -59,7 +60,7 @@ class CheckoutPage extends Component
         $order->grand_total = CartManagement::calculateGrandTotal($cart_items);
         $order->shipping_method = 'none';
         $order->notes = 'Order placed by '. auth()->user()->name;
-        
+
         $order->save();
     
         $address = new Address();
@@ -141,6 +142,14 @@ class CheckoutPage extends Component
     
                 Log::info('Midtrans token generated: ' . $snapToken);
     
+                $orderItem = new OrderItem();
+                $orderItem->order_id = $order->id;
+                $orderItem->book_id = $cart_items[0]['book_id'];
+                $orderItem->quantity = $cart_items[0]['quantity'];
+                $orderItem->unit_price = $cart_items[0]['unit_price'];
+                $orderItem->total_price = $cart_items[0]['total_price'];
+                $orderItem->save();
+
                 return redirect($redirect_url);
             } catch (\Exception $e) {
                 Log::error('Midtrans Error: ' . $e->getMessage());
@@ -148,54 +157,62 @@ class CheckoutPage extends Component
             }
         }
 
+        $orderItem = new OrderItem();
+        $orderItem->order_id = $order->id;
+        $orderItem->book_id = $cart_items[0]['book_id'];
+        $orderItem->quantity = $cart_items[0]['quantity'];
+        $orderItem->unit_price = $cart_items[0]['unit_price'];
+        $orderItem->total_price = $cart_items[0]['total_price'];
+        $orderItem->save();
+
         return redirect($redirect_url);
     }
 
-    public function handleMidtransCallback(Request $request)
-    {
-        Log::info('Midtrans callback diterima', ['data' => $request->all()]);
+    // public function handleMidtransCallback(Request $request)
+    // {
+    //     Log::info('Midtrans callback diterima', ['data' => $request->all()]);
     
-        $serverKey = config('midtrans.server_key');
-        $transaction_status = $request->input('transaction_status');
-        $order_id = $request->input('order_id');
-        $signature_key = $request->input('signature_key');
-        $gross_amount = $request->input('gross_amount');
+    //     $serverKey = config('midtrans.server_key');
+    //     $transaction_status = $request->input('transaction_status');
+    //     $order_id = $request->input('order_id');
+    //     $signature_key = $request->input('signature_key');
+    //     $gross_amount = $request->input('gross_amount');
     
-        $calculated_signature_key = hash("sha512", $order_id.$gross_amount.$serverKey);
+    //     $calculated_signature_key = hash("sha512", $order_id.$gross_amount.$serverKey);
     
-        if ($calculated_signature_key !== $signature_key) {
-            Log::error('Invalid signature key received from Midtrans');
-            return response()->json(['message' => 'Invalid signature key'], 403);
-        }
+    //     if ($calculated_signature_key !== $signature_key) {
+    //         Log::error('Invalid signature key received from Midtrans');
+    //         return response()->json(['message' => 'Invalid signature key'], 403);
+    //     }
     
-        $order = Order::where('id', $order_id)->first();
+    //     $order = Order::where('id', $order_id)->first();
     
-        if ($order) {
-            Log::info('Order ditemukan, mulai memproses status transaksi');
+    //     if ($order) {
+    //         Log::info('Order ditemukan, mulai memproses status transaksi');
     
-            if ($transaction_status == 'settlement') {
-                $order->payment_status = 'paid';
-                $order->status = 'completed';
+    //         if ($transaction_status == 'settlement') {
+    //             $order->payment_status = 'paid';
+    //             $order->status = 'completed';
     
-                CartManagement::clearCartItemsFromCookie();
-                Log::info('Keranjang telah dikosongkan setelah pembayaran sukses.');
+    //             CartManagement::clearCartItemsFromCookie();
+    //             Log::info('Keranjang telah dikosongkan setelah pembayaran sukses.');
     
-                Mail::to($order->user->email)->send(new OrderPlaced($order));
-            } elseif ($transaction_status == 'deny') {
-                $order->payment_status = 'denied';
-                $order->status = 'failed';
-            } elseif ($transaction_status == 'expire') {
-                $order->payment_status = 'expired';
-                $order->status = 'failed';
-            }
+    //             Mail::to($order->user->email)->send(new OrderPlaced($order));
+    //         } elseif ($transaction_status == 'deny') {
+    //             $order->payment_status = 'denied';
+    //             $order->status = 'failed';
+    //         } elseif ($transaction_status == 'expire') {
+    //             $order->payment_status = 'expired';
+    //             $order->status = 'failed';
+    //         }
     
-            $order->save();
-        } else {
-            Log::error('Order dengan ID ' . $order_id . ' tidak ditemukan.');
-        }
+    //         $order->save();
+    //     } else {
+    //         Log::error('Order dengan ID ' . $order_id . ' tidak ditemukan.');
+    //     }
     
-        return response()->json(['message' => 'Payment processed']);
-    }
+    //     return response()->json(['message' => 'Payment processed']);
+    // }
 
     public function render()
     {

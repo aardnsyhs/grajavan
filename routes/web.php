@@ -40,6 +40,4 @@ Route::middleware('auth')->group(function() {
     Route::get('/my-orders/{order_id}', MyOrderDetailPage::class)->name('my-orders.show');
     Route::get('/success', SuccessPage::class)->name('success');
     Route::get('/cancel', CancelPage::class)->name('cancel');
-    Route::post('/midtrans/notification', [PaymentController::class, 'midtransNotification']);
-    Route::post('/midtrans/callback', [CheckoutPage::class, 'handleMidtransCallback'])->name('midtrans.callback');
 });
