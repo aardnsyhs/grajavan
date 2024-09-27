@@ -112,7 +112,7 @@
             <tbody>
                 @foreach ($order->items as $item)
                     <tr>
-                        <td>{{ $item->name }}</td>
+                        <td>{{ $item->book->title }}</td>
                         <td>{{ $item->quantity }}</td>
                         <td>{{ Number::currency($item->unit_price, 'IDR') }}</td>
                         <td>{{ Number::currency($item->total_price, 'IDR') }}</td>

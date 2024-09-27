@@ -40,12 +40,6 @@
                             </dt>
                             <dd class="font-medium text-gray-800 dark:text-neutral-200">
                                 <span class="block font-semibold">{{ $order->address->full_name }}</span>
-                                <address class="not-italic font-normal">
-                                    {{ $order->address->street_address }}<br>
-                                    {{ $order->address->city }}, {{ $order->address->state }},
-                                    {{ $order->address->postal_code }}<br>
-                                    No Telepon: {{ $order->address->phone }}
-                                </address>
                             </dd>
                         </dl>
                         <dl class="flex flex-col sm:flex-row gap-x-3 text-sm">
@@ -53,7 +47,6 @@
                                 Detail alamat:
                             </dt>
                             <dd class="font-medium text-gray-800 dark:text-neutral-200">
-                                <span class="block font-semibold">{{ $order->address->full_name }}</span>
                                 <address class="not-italic font-normal">
                                     {{ $order->address->street_address }}<br>
                                     {{ $order->address->city }}, {{ $order->address->state }},
@@ -109,7 +102,7 @@
                         <div class="col-span-full sm:col-span-2">
                             <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Item
                             </h5>
-                            <p class="font-medium text-gray-800 dark:text-neutral-200">{{ $item->title }}</p>
+                            <p class="font-medium text-gray-800 dark:text-neutral-200">{{ $item->book->title }}</p>
                         </div>
                         <div>
                             <h5 class="sm:hidden text-xs font-medium text-gray-500 uppercase dark:text-neutral-500">Qty

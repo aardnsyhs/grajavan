@@ -17,7 +17,7 @@ class SuccessPage extends Component
 
     public function render()
     {
-        $latest_order = Order::with('address')->where('user_id', auth()->user()->id)->latest()->first();
+        $latest_order = Order::with(['address', 'items.book'])->where('user_id', auth()->user()->id)->latest()->first();
         
         if ($this->session_id) {
             Stripe::setApiKey(env('STRIPE_SECRET'));
