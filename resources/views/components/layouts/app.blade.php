@@ -7,6 +7,7 @@
 
     <title>{{ $title ?? 'Grajavan' }}</title>
     @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/style.css'])
     @livewireStyles
 </head>
 

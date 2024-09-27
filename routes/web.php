@@ -15,6 +15,7 @@ use App\Livewire\MyOrderDetailPage;
 use App\Livewire\MyOrdersPage;
 use App\Livewire\SuccessPage;
 use App\Http\Controllers\Auth\LogoutController;
+use App\Http\Controllers\InvoiceController;
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', HomePage::class)->name('home');
@@ -44,4 +45,6 @@ Route::middleware('auth')->group(function () {
     Route::post('/midtrans/webhook', [CheckoutPage::class, 'handleMidtransWebhook'])->name('midtrans.webhook');
 
     Route::get('/cancel', CancelPage::class)->name('cancel');
+
+    Route::get('/orders/{order}/pdf', [InvoiceController::class, 'generateInvoicePdf'])->name('orders.invoice.pdf');
 });
