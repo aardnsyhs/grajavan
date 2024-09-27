@@ -31,20 +31,27 @@ class CheckoutPage extends Component
     public function placeOrder()
     {
         $this->validateOrderData();
-        
+    
         $cart_items = CartManagement::getCartItemsFromCookie();
         $grand_total = CartManagement::calculateGrandTotal($cart_items);
-
+        $response = null;
+    
         switch ($this->payment_method) {
             case 'stripe':
-                return $this->processStripePayment($cart_items, $grand_total);
+                $response = $this->processStripePayment($cart_items, $grand_total);
+                break;
             case 'midtrans':
-                return $this->processMidtransPayment($cart_items, $grand_total);
+                $response = $this->processMidtransPayment($cart_items, $grand_total);
+                break;
             case 'cod':
-                return $this->processCodPayment();
+                $response = $this->processCodPayment();
+                break;
             default:
-                return redirect()->back()->with('error', 'Invalid payment method');
+                $response = redirect()->back()->with('error', 'Invalid payment method');
+                break;
         }
+    
+        return $response;
     }
 
     private function validateOrderData()
