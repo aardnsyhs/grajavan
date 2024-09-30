@@ -16,7 +16,9 @@ use App\Livewire\MyOrdersPage;
 use App\Livewire\SuccessPage;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\InvoiceController;
+use App\Livewire\ProductReviewModal;
 use Illuminate\Support\Facades\Route;
+use Livewire\Livewire;
 
 Route::get('/', HomePage::class)->name('home');
 Route::get('/categories', CategoriesPage::class)->name('categories');
@@ -47,4 +49,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/cancel', CancelPage::class)->name('cancel');
 
     Route::get('/orders/{order}/pdf', [InvoiceController::class, 'generateInvoicePdf'])->name('orders.invoice.pdf');
+
+    Livewire::component('product-review-modal', ProductReviewModal::class);
 });
