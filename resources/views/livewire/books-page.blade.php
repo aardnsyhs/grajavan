@@ -76,7 +76,7 @@
                                 <div class="relative h-56 m-2.5 overflow-hidden text-white rounded-md">
                                     <a href="/books/{{ $book->id }}">
                                         <img src="{{ url('storage', $book->image) }}" alt="{{ $book->title }}"
-                                            class="object-fit w-full h-full" loading="lazy" />
+                                            class="object-contain w-full h-full" loading="lazy" />
                                     </a>
                                 </div>
                                 <div class="p-4 flex flex-col flex-grow">
