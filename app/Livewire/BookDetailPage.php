@@ -50,8 +50,32 @@ class BookDetailPage extends Component
 
     public function render()
     {
+        $book = Book::with('reviews.user')->findOrFail($this->book_id);
+        $reviews = $book->reviews()->with('user')->latest()->get();
+        
+        $totalReviews = $reviews->count();
+        $averageRating = $reviews->avg('rating');
+
+        $ratingCounts = [
+            5 => $reviews->where('rating', 5)->count(),
+            4 => $reviews->where('rating', 4)->count(),
+            3 => $reviews->where('rating', 3)->count(),
+            2 => $reviews->where('rating', 2)->count(),
+            1 => $reviews->where('rating', 1)->count(),
+        ];
+
+        $ratingPercentages = [];
+        foreach ($ratingCounts as $star => $count) {
+            $ratingPercentages[$star] = $totalReviews > 0 ? ($count / $totalReviews) * 100 : 0;
+        }
+
         return view('livewire.book-detail-page', [
-            'book' => Book::where('id', $this->book_id)->firstOrFail(),
+            'book' => $book,
+            'reviews' => $reviews,
+            'totalReviews' => $totalReviews,
+            'averageRating' => round($averageRating, 2),
+            'ratingCounts' => $ratingCounts,
+            'ratingPercentages' => $ratingPercentages,
         ]);
     }
 }
