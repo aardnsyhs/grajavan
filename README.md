@@ -1,4 +1,6 @@
-## Menjalankan Proyek di Lokal
+## Cara Menjalankan Proyek Laravel Secara Lokal
+
+Langkah-langkah berikut ini menjelaskan bagaimana cara menjalankan proyek Laravel di lingkungan lokal Anda mulai dari clone project hingga menjalankannya.
 
 ### 1. Clone Repository
 Pertama, clone repository ini ke dalam direktori lokal Anda menggunakan git:
@@ -71,15 +73,49 @@ Aplikasi Laravel sekarang berjalan di `http://127.0.0.1:8000` atau URL lain yang
 
 ### 9. Install Dependencies Frontend
 
-Proyek ini menggunakan frontend yang membutuhkan Node.js, jalankan perintah berikut untuk menginstall dependencies frontend dengan yarn:
+Proyek ini menggunakan frontend yang membutuhkan Node.js, jalankan perintah berikut untuk menginstall dependencies frontend:
 
 ```bash
-yarn install
+npm install
 ```
 Setelah itu, Anda bisa menjalankan:
 ```bash
-yarn dev
+npm run dev
 ```
 Untuk menjalankan development server dan meng-compile asset frontend.
 
 ### Selesai
+
+Sekarang Anda sudah bisa mengakses aplikasi Laravel secara lokal melalui browser dengan URL yang ditampilkan (`http://127.0.0.1:8000`).
+
+<hr>
+
+### 10. Konfigurasi Filament Admin
+
+Proyek ini menggunakan **Filament Admin** sebagai backend admin panel untuk manajemen aplikasi. Berikut adalah cara menggunakannya.
+
+#### 10.1 Buat Akun Admin
+
+Setelah Filament terinstall, Anda harus membuat akun admin untuk bisa mengakses dashboard admin. Gunakan perintah berikut untuk membuat admin user:
+
+```bash
+php artisan make:filament-user
+```
+
+Anda akan diminta memasukkan detail untuk akun admin seperti nama, email, dan password.
+
+#### 10.2 Akses Dashboard Admin
+Setelah user admin dibuat, Anda bisa mengakses dashboard admin Filament dengan mengunjungi:
+
+```arduino
+http://127.0.0.1:8000/admin
+```
+Masuk dengan akun admin yang telah Anda buat.
+
+## Catatan Penting
+
+Disarankan untuk membuka halaman admin di browser yang berbeda dari browser yang digunakan untuk sesi pengguna reguler. Hal ini untuk menghindari konflik autentikasi dan memastikan sesi admin berjalan dengan baik.
+
+<hr>
+
+Sekarang Anda sudah dapat menggunakan Filament sebagai panel admin untuk mengelola aplikasi Anda.
