@@ -11,9 +11,9 @@
     @livewireStyles
 </head>
 
-<body class="bg-slate-200 dark:bg-slate-700">
+<body class="bg-slate-200 dark:bg-slate-700 flex flex-col min-h-screen">
     @livewire('partials.navbar')
-    <main>
+    <main class="flex-grow">
         {{ $slot }}
     </main>
     @livewire('partials.footer')
