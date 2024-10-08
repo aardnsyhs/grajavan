@@ -9,12 +9,12 @@
                             <div
                                 class="rounded-lg border border-gray-200 bg-white p-4 shadow-sm dark:border-gray-700 dark:bg-gray-800 md:p-6">
                                 <div class="md:flex md:items-center md:justify-between md:gap-6 space-y-4 md:space-y-0">
-                                    <a href="#" class="shrink-0">
-                                        <img class="h-20 w-20" src="{{ url('storage', $item['image']) }}"
+                                    <a wire:navigate href="/books/{{ $item['book_id'] }}" class="shrink-0">
+                                        <img class="h-20 w-20 object-contain" src="{{ url('storage', $item['image']) }}"
                                             alt="{{ $item['title'] }}" loading="lazy" />
                                     </a>
                                     <div class="w-full min-w-0 flex-1 md:max-w-md">
-                                        <a href="#"
+                                        <a wire:navigate href="/books/{{ $item['book_id'] }}"
                                             class="text-base font-medium text-gray-900 hover:underline dark:text-white">{{ $item['title'] }}</a>
                                         <div class="flex items-center gap-4">
                                             <button wire:click="removeItem('{{ $item['book_id'] }}')" type="button"
