@@ -8,6 +8,9 @@
                     src="{{ url('storage', $book->image) }}" alt="{{ $book->title }}" />
             </div>
             <div class="mt-6 sm:mt-8 lg:mt-0">
+                <h1 class="text-sm font-semibold text-gray-900 sm:text-md dark:text-gray-300">
+                    {{ $book->author }}
+                </h1>
                 <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-gray-300">
                     {{ $book->title }}
                 </h1>
