@@ -1,5 +1,5 @@
 <section class="py-8 md:py-16 dark:bg-gray-900 antialiased">
-    <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0 bg-white rounded-lg">
+    <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0 bg-white dark:bg-gray-800 rounded-lg">
         <div class="lg:grid lg:grid-cols-2 lg:gap-8 xl:gap-16 py-3 md:py-8">
             <div class="shrink-0 max-w-md lg:max-w-lg mx-auto">
                 <img class="w-full h-auto max-h-[500px] object-contain dark:hidden"
@@ -8,11 +8,11 @@
                     src="{{ url('storage', $book->image) }}" alt="{{ $book->title }}" />
             </div>
             <div class="mt-6 sm:mt-8 lg:mt-0">
-                <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-white">
+                <h1 class="text-xl font-semibold text-gray-900 sm:text-2xl dark:text-gray-300">
                     {{ $book->title }}
                 </h1>
                 <div class="mt-4 sm:items-center sm:gap-4 sm:flex">
-                    <p class="text-2xl font-extrabold text-gray-900 sm:text-3xl dark:text-white">
+                    <p class="text-2xl font-extrabold text-gray-900 sm:text-3xl dark:text-gray-300">
                         {{ Number::currency($book->price, 'IDR') }}
                     </p>
                 </div>
@@ -25,13 +25,13 @@
                                     Pilih jumlahnya
                                 </span>
                                 <input wire:model="quantity" readonly
-                                    class="w-full p-0 bg-transparent border-0 text-gray-800 focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none dark:text-white"
+                                    class="w-full p-0 bg-transparent border-0 text-gray-800 focus:ring-0 [&::-webkit-inner-spin-button]:appearance-none [&::-webkit-outer-spin-button]:appearance-none dark:text-gray-300"
                                     style="-moz-appearance: textfield;" type="number"
                                     aria-roledescription="Number field" value="1" data-hs-input-number-input="">
                             </div>
                             <div class="flex justify-end items-center gap-x-1.5">
                                 <button type="button" wire:click="decreaseQty"
-                                    class="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
+                                    class="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-gray-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
                                     tabindex="-1" aria-label="Decrease" data-hs-input-number-decrement="">
                                     <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24"
                                         height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -40,7 +40,7 @@
                                     </svg>
                                 </button>
                                 <button type="button" wire:click="increaseQty"
-                                    class="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
+                                    class="size-6 inline-flex justify-center items-center gap-x-2 text-sm font-medium rounded-full border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 focus:outline-none focus:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-gray-300 dark:hover:bg-neutral-800 dark:focus:bg-neutral-800"
                                     tabindex="-1" aria-label="Increase" data-hs-input-number-increment="">
                                     <svg class="shrink-0 size-3.5" xmlns="http://www.w3.org/2000/svg" width="24"
                                         height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
@@ -65,15 +65,15 @@
                     </button>
                 </div>
                 <hr class="my-6 md:my-8 border-gray-200 dark:border-gray-800" />
-                <p class="mb-6 text-gray-500 dark:text-gray-400">
+                <h2 class="mb-6 text-gray-500 dark:text-gray-300">
                     {!! Str::markdown($book->description) !!}
-                </p>
+                </h2>
             </div>
         </div>
-        <section class="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+        <section class="bg-white py-8 antialiased dark:bg-gray-800 md:py-16">
             <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
                 <div class="flex items-center gap-2">
-                    <h2 class="text-2xl font-semibold text-gray-900 dark:text-white">Reviews</h2>
+                    <h2 class="text-2xl font-semibold text-gray-900 dark:text-gray-300">Reviews</h2>
                     <div class="mt-2 flex items-center gap-2 sm:mt-0">
                         <div class="flex items-center gap-0.5">
                             @for ($i = 1; $i <= 5; $i++)
@@ -89,13 +89,13 @@
                             ({{ $averageRating }})
                         </p>
                         <a href="#"
-                            class="text-sm font-medium leading-none text-gray-900 underline hover:no-underline dark:text-white">
+                            class="text-sm font-medium leading-none text-gray-900 underline hover:no-underline dark:text-gray-300">
                             {{ $totalReviews }} Reviews </a>
                     </div>
                 </div>
                 <div class="my-6 gap-8 sm:flex sm:items-start md:my-8">
                     <div class="shrink-0 space-y-4">
-                        <p class="text-2xl font-semibold leading-none text-gray-900 dark:text-white">
+                        <p class="text-2xl font-semibold leading-none text-gray-900 dark:text-gray-300">
                             {{ $averageRating }} dari 5
                         </p>
                     </div>
@@ -103,7 +103,7 @@
                         @foreach ([5, 4, 3, 2, 1] as $star)
                             <div class="flex items-center gap-2">
                                 <p
-                                    class="w-2 shrink-0 text-start text-sm font-medium leading-none text-gray-900 dark:text-white">
+                                    class="w-2 shrink-0 text-start text-sm font-medium leading-none text-gray-900 dark:text-gray-300">
                                     {{ $star }}</p>
                                 <svg class="h-4 w-4 shrink-0 text-yellow-300" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -139,16 +139,16 @@
                                     @endfor
                                 </div>
                                 <div class="space-y-0.5">
-                                    <p class="text-base font-semibold text-gray-900 dark:text-white">
+                                    <p class="text-base font-semibold text-gray-900 dark:text-gray-300">
                                         {{ $review->user->name }}</p>
                                     <p class="text-sm font-normal text-gray-500 dark:text-gray-400">
                                         {{ $review->created_at->format('F d, Y') }}</p>
                                 </div>
                             </div>
                             <div class="mt-4 min-w-0 flex-1 space-y-4 sm:mt-0">
-                                <p class="text-base font-normal text-gray-500 dark:text-gray-400">
+                                <h2 class="text-base font-normal text-gray-500 dark:text-gray-300">
                                     {!! Str::markdown($review->comment) !!}
-                                </p>
+                                </h2>
                             </div>
                         </div>
                         <hr>
