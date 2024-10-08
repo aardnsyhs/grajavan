@@ -16,6 +16,7 @@ use App\Livewire\MyOrdersPage;
 use App\Livewire\SuccessPage;
 use App\Http\Controllers\Auth\LogoutController;
 use App\Http\Controllers\InvoiceController;
+use App\Livewire\MyAccountPage;
 use App\Livewire\ProductReviewModal;
 use Illuminate\Support\Facades\Route;
 use Livewire\Livewire;
@@ -39,6 +40,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/checkout', CheckoutPage::class)->name('checkout');
     Route::get('/my-orders', MyOrdersPage::class)->name('my-orders.index');
     Route::get('/my-orders/{order_id}', MyOrderDetailPage::class)->name('my-orders.show');
+    Route::get('/my-account', MyAccountPage::class);
     
     Route::post('/webhook/stripe', [CheckoutPage::class, 'handleStripeWebhook'])->name('stripe.webhook');
     Route::get('/stripe/success', [CheckoutPage::class, 'handleStripeSuccess'])->name('stripe.success');
