@@ -16,10 +16,16 @@ class BookDetailPage extends Component
 
     public $book_id;
     public $quantity = 1;
+    public $perPage = 3;
 
     public function mount($book_id)
     {
         $this->book_id = $book_id;
+    }
+
+    public function loadMore()
+    {
+        $this->perPage += 3;
     }
 
     public function increaseQty()
@@ -34,7 +40,7 @@ class BookDetailPage extends Component
         }
     }
 
-    // add product to cart method
+    // Metode untuk menambahkan produk ke keranjang
     public function addToCart($book_id)
     {
         $total_count = CartManagement::addItemToCartWithQty($book_id, $this->quantity);
@@ -44,24 +50,25 @@ class BookDetailPage extends Component
         $this->alert('success', 'Buku berhasil ditambahkan ke keranjang!', [
             'position' => 'bottom-end',
             'timer' => 3000,
-            'toast' =>true
+            'toast' => true
         ]);
     }
 
     public function render()
     {
         $book = Book::with('reviews.user')->findOrFail($this->book_id);
-        $reviews = $book->reviews()->with('user')->latest()->get();
+
+        $reviews = $book->reviews()->with('user')->latest()->take($this->perPage)->get();
         
-        $totalReviews = $reviews->count();
-        $averageRating = $reviews->avg('rating');
+        $totalReviews = $book->reviews()->count();
+        $averageRating = $book->reviews()->avg('rating');
 
         $ratingCounts = [
-            5 => $reviews->where('rating', 5)->count(),
-            4 => $reviews->where('rating', 4)->count(),
-            3 => $reviews->where('rating', 3)->count(),
-            2 => $reviews->where('rating', 2)->count(),
-            1 => $reviews->where('rating', 1)->count(),
+            5 => $book->reviews()->where('rating', 5)->count(),
+            4 => $book->reviews()->where('rating', 4)->count(),
+            3 => $book->reviews()->where('rating', 3)->count(),
+            2 => $book->reviews()->where('rating', 2)->count(),
+            1 => $book->reviews()->where('rating', 1)->count(),
         ];
 
         $ratingPercentages = [];

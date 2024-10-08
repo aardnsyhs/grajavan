@@ -24,7 +24,7 @@ class CheckoutPage extends Component
     {
         $cart_items = CartManagement::getCartItemsFromCookie();
         if (empty($cart_items)) {
-            return redirect('/products');
+            return redirect('/books');
         }
     }
 
