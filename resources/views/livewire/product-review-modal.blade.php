@@ -7,11 +7,15 @@
                 <div>
                     <h3 class="flex justify-start mb-1 text-lg font-semibold text-gray-900 dark:text-white">Berikan
                         ulasan untuk:</h3>
-                    @foreach ($order->items as $item)
-                        <span class="font-medium text-primary-700 hover:underline dark:text-primary-500"
-                            wire:key="{{ $item->book->id }}">{{ $item->book->title }},
-                        </span>
-                    @endforeach
+                    <div class="max-w-full overflow-hidden text-left">
+                        @foreach ($order->items as $item)
+                            <span
+                                class="block max-w-full break-words whitespace-normal font-medium text-primary-700 hover:underline dark:text-primary-500"
+                                wire:key="{{ $item->book->id }}">
+                                {{ $item->book->title }},
+                            </span>
+                        @endforeach
+                    </div>
                 </div>
                 <button type="button"
                     class="absolute right-5 top-5 ms-auto inline-flex h-8 w-8 items-center justify-center rounded-lg bg-transparent text-sm text-gray-400 hover:bg-gray-200 hover:text-gray-900 dark:hover:bg-gray-600 dark:hover:text-white"
@@ -30,7 +34,7 @@
                 @else
                     <div class="mb-4 grid grid-cols-2 gap-4">
                         <div class="col-span-2">
-                            <span class="flex justify-start text-xl">Rating</span>
+                            <span class="flex justify-start text-xl text-gray-400 dark:text-gray-200">Rating</span>
                             <livewire:rating />
                         </div>
                         <div class="col-span-2">
