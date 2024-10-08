@@ -1,4 +1,4 @@
-<section class="antialiased dark:bg-gray-900 md:py-8">
+<section class="antialiased dark:bg-gray-900 md:py-16">
     <div class="mx-auto max-w-screen-xl px-4 2xl:px-0">
         <h2 class="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Keranjang</h2>
         <div class="mt-6 sm:mt-8 lg:flex lg:space-x-8">

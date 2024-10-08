@@ -1,6 +1,6 @@
 <div class="flex items-center">
     @for ($i = 1; $i <= 5; $i++)
-        <svg wire:click="setRating({{ $i }})" wire:model="rating"
+        <svg wire:click="setRating({{ $i }})"
             class="h-6 w-6 cursor-pointer @if ($rating >= $i) text-yellow-300 @else text-gray-300 @endif"
             aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 20">
             <path
@@ -8,6 +8,6 @@
         </svg>
     @endfor
     <span class="ms-2 text-lg font-bold text-gray-900 dark:text-white">
-        {{ number_format($rating) }} dari 5
+        {{ number_format($rating, 1) }} dari 5
     </span>
 </div>

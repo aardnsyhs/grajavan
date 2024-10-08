@@ -11,6 +11,7 @@ class Rating extends Component
     public function setRating($value)
     {
         $this->rating = $value;
+        $this->dispatch('ratingUpdated', $this->rating);
     }
 
     public function render()
