@@ -7,7 +7,9 @@ use App\Models\Order;
 use App\Models\Address;
 use App\Models\BookTypeBook;
 use App\Models\OrderItem;
+use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Livewire\Attributes\Title;
 use Livewire\Component;
@@ -152,48 +154,64 @@ class CheckoutPage extends Component
     {
         $cart_items = CartManagement::getCartItemsFromCookie();
 
-        $order = Order::create([
-            'user_id' => auth()->id(),
-            'grand_total' => CartManagement::calculateGrandTotal($cart_items),
-            'payment_method' => $payment_method,
-            'payment_status' => $payment_status,
-            'status' => "new",
-            'currency' => "idr",
-            'shipping_amount' => 0,
-            'shipping_method' => ($payment_method == 'cod') ? 'cod' : 'none',
-            'notes' => "Order placed by " . auth()->user()->name,
-        ]);
-
-        Address::create([
-            'first_name' => $this->first_name,
-            'last_name' => $this->last_name,
-            'phone' => $this->phone,
-            'street_address' => $this->street_address,
-            'city' => $this->city,
-            'state' => $this->state,
-            'postal_code' => $this->postal_code,
-            'order_id' => $order->id,
-        ]);
-
-        foreach ($cart_items as $item) {
-            OrderItem::create([
-                'order_id' => $order->id,
-                'book_id' => $item['book_id'],
-                'quantity' => $item['quantity'],
-                'unit_price' => $item['unit_price'],
-                'total_price' => $item['unit_price'] * $item['quantity'],
+        DB::beginTransaction();
+        try {
+            $order = Order::create([
+                'user_id' => auth()->id(),
+                'grand_total' => CartManagement::calculateGrandTotal($cart_items),
+                'payment_method' => $payment_method,
+                'payment_status' => $payment_status,
+                'status' => "new",
+                'currency' => "idr",
+                'shipping_amount' => 0,
+                'shipping_method' => ($payment_method == 'cod') ? 'cod' : 'none',
+                'notes' => "Order placed by " . auth()->user()->name,
             ]);
 
-            $bookTypeBook = BookTypeBook::where('book_id', $item['book_id'])->first();
-            if ($bookTypeBook) {
-                $bookTypeBook->stock -= $item['quantity'];
-                $bookTypeBook->save();
+            Address::create([
+                'first_name' => $this->first_name,
+                'last_name' => $this->last_name,
+                'phone' => $this->phone,
+                'street_address' => $this->street_address,
+                'city' => $this->city,
+                'state' => $this->state,
+                'postal_code' => $this->postal_code,
+                'order_id' => $order->id,
+            ]);
+
+            foreach ($cart_items as $item) {
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'book_id' => $item['book_id'],
+                    'quantity' => $item['quantity'],
+                    'unit_price' => $item['unit_price'],
+                    'total_price' => $item['unit_price'] * $item['quantity'],
+                ]);
+
+                $bookTypeBook = BookTypeBook::where('book_id', $item['book_id'])->first();
+                if ($bookTypeBook) {
+                    if ($bookTypeBook->stock < $item['quantity']) {
+                        throw new Exception('Stok tidak mencukupi untuk book_id: ' . $item['book_id']);
+                    }
+                    
+                    $bookTypeBook->stock -= $item['quantity'];
+                    $bookTypeBook->save();
+                } else {
+                    throw new Exception('BookTypeBook tidak ditemukan untuk book_id: ' . $item['book_id']);
+                }
             }
+
+            DB::commit();
+
+            CartManagement::clearCartItemsFromCookie();
+
+            return $order->id;
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            Log::error('Error saat memproses pesanan: ' . $e->getMessage());
+            throw $e;
         }
-
-        CartManagement::clearCartItemsFromCookie();
-
-        return $order->id;
     }
 
     private function processStripePayment($cart_items)
@@ -301,47 +319,64 @@ class CheckoutPage extends Component
     {
         $cart_items = CartManagement::getCartItemsFromCookie();
 
-        $order = Order::create([
-            'user_id' => auth()->user()->id,
-            'grand_total' => CartManagement::calculateGrandTotal($cart_items),
-            'payment_method' => $payment_method,
-            'payment_status' => $payment_status,
-            'status' => 'new',
-            'currency' => 'idr',
-            'shipping_amount' => 0,
-            'shipping_method' => ($payment_method == 'cod') ? 'cod' : 'none',
-            'notes' => 'Order placed by ' . auth()->user()->name,
-        ]);
-
-        Address::create([
-            'first_name' => $metadata['first_name'],
-            'last_name' => $metadata['last_name'],
-            'phone' => $metadata['phone'],
-            'street_address' => $metadata['street_address'],
-            'city' => $metadata['city'],
-            'state' => $metadata['state'],
-            'postal_code' => $metadata['postal_code'],
-            'order_id' => $order->id,
-        ]);
-
-        foreach ($cart_items as $item) {
-            OrderItem::create([
-                'order_id' => $order->id,
-                'book_id' => $item['book_id'],
-                'quantity' => $item['quantity'],
-                'unit_price' => $item['unit_price'],
-                'total_price' => $item['unit_price'] * $item['quantity'],
+        DB::beginTransaction();
+        try {
+            $order = Order::create([
+                'user_id' => auth()->id(),
+                'grand_total' => CartManagement::calculateGrandTotal($cart_items),
+                'payment_method' => $payment_method,
+                'payment_status' => $payment_status,
+                'status' => "new",
+                'currency' => "idr",
+                'shipping_amount' => 0,
+                'shipping_method' => ($payment_method == 'cod') ? 'cod' : 'none',
+                'notes' => "Order placed by " . auth()->user()->name,
             ]);
 
-            $bookTypeBook = BookTypeBook::where('book_id', $item['book_id'])->first();
-            if ($bookTypeBook) {
-                $bookTypeBook->stock -= $item['quantity'];
-                $bookTypeBook->save();
-            }
-        }
+            Address::create([
+                'first_name' => $metadata['first_name'],
+                'last_name' => $metadata['last_name'],
+                'phone' => $metadata['phone'],
+                'street_address' => $metadata['street_address'],
+                'city' => $metadata['city'],
+                'state' => $metadata['state'],
+                'postal_code' => $metadata['postal_code'],
+                'order_id' => $order->id,
+            ]);
 
-        CartManagement::clearCartItemsFromCookie();
-        return $order->id;
+            foreach ($cart_items as $item) {
+                OrderItem::create([
+                    'order_id' => $order->id,
+                    'book_id' => $item['book_id'],
+                    'quantity' => $item['quantity'],
+                    'unit_price' => $item['unit_price'],
+                    'total_price' => $item['unit_price'] * $item['quantity'],
+                ]);
+
+                $bookTypeBook = BookTypeBook::where('book_id', $item['book_id'])->first();
+                if ($bookTypeBook) {
+                    if ($bookTypeBook->stock < $item['quantity']) {
+                        throw new Exception('Stok tidak mencukupi untuk book_id: ' . $item['book_id']);
+                    }
+                    
+                    $bookTypeBook->stock -= $item['quantity'];
+                    $bookTypeBook->save();
+                } else {
+                    throw new Exception('BookTypeBook tidak ditemukan untuk book_id: ' . $item['book_id']);
+                }
+            }
+
+            DB::commit();
+
+            CartManagement::clearCartItemsFromCookie();
+
+            return $order->id;
+
+        } catch (Exception $e) {
+            DB::rollBack();
+            Log::error('Error saat memproses pesanan: ' . $e->getMessage());
+            throw $e;
+        }
     }
 
     public function render()
