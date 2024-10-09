@@ -17,6 +17,7 @@
         "vite": "^5.0.0"
     },
     "dependencies": {
+        "dropzone": "^6.0.0-beta.2",
         "flowbite": "^2.5.1",
         "preline": "^2.4.1"
     }
