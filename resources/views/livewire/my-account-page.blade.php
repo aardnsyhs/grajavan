@@ -34,7 +34,7 @@
                     </div>
                     <button type="button"
                         class="mt-4 px-4 py-2 bg-white border border-gray-300 rounded-md font-semibold text-xs text-gray-700 uppercase tracking-widest shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-400 focus:shadow-outline-blue active:text-gray-800 active:bg-gray-50 transition ease-in-out duration-150"
-                        x-on:click.prevent="$refs.photo.click()">
+                        x-on:click.prevent="$refs.photo.click()" wire:loading.attr="disabled">
                         Pilih foto baru
                     </button>
                     @error('image')
@@ -65,7 +65,8 @@
                     <div class="flex justify-end">
                         <button type="submit"
                             class="inline-flex items-center px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold text-white hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:bg-primary-700 dark:hover:bg-primary-800 dark:focus:ring-primary-600">
-                            Update Account
+                            <span wire:loading.remove>Perbarui akun</span>
+                            <span wire:loading>Memperbarui...</span>
                         </button>
                     </div>
                 </div>
