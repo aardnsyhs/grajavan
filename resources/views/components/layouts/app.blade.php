@@ -19,8 +19,6 @@
     @livewire('partials.footer')
     @livewireScripts
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script src="./node_modules/lodash/lodash.min.js"></script>
-    <script src="./node_modules/dropzone/dist/dropzone-min.js"></script>
     <x-livewire-alert::scripts />
 </body>
 

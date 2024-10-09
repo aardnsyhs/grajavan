@@ -3,6 +3,7 @@
 namespace App\Livewire\Partials;
 
 use App\Helpers\CartManagement;
+use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -23,6 +24,8 @@ class Navbar extends Component
 
     public function render()
     {
-        return view('livewire.partials.navbar');
+        return view('livewire.partials.navbar', [
+            'user' => Auth::user(),
+        ]);
     }
 }
