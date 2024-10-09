@@ -27,7 +27,7 @@
                             class="w-32 h-32 rounded-full shadow-md">
                     </div>
                     <div class="mt-2" x-show="photoPreview" style="display: none;">
-                        <span class="block w-24 h-24 rounded-full shadow"
+                        <span class="block w-32 h-32 rounded-full shadow"
                             x-bind:style="'background-size: cover; background-repeat: no-repeat; background-position: center center; background-image: url(\'' +
                             photoPreview + '\');'">
                         </span>
