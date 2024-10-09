@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Helpers\CartManagement;
 use App\Models\Order;
 use App\Models\Address;
+use App\Models\BookTypeBook;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -182,6 +183,12 @@ class CheckoutPage extends Component
                 'unit_price' => $item['unit_price'],
                 'total_price' => $item['unit_price'] * $item['quantity'],
             ]);
+
+            $bookTypeBook = BookTypeBook::where('book_id', $item['book_id'])->first();
+            if ($bookTypeBook) {
+                $bookTypeBook->stock -= $item['quantity'];
+                $bookTypeBook->save();
+            }
         }
 
         CartManagement::clearCartItemsFromCookie();
@@ -325,6 +332,12 @@ class CheckoutPage extends Component
                 'unit_price' => $item['unit_price'],
                 'total_price' => $item['unit_price'] * $item['quantity'],
             ]);
+
+            $bookTypeBook = BookTypeBook::where('book_id', $item['book_id'])->first();
+            if ($bookTypeBook) {
+                $bookTypeBook->stock -= $item['quantity'];
+                $bookTypeBook->save();
+            }
         }
 
         CartManagement::clearCartItemsFromCookie();
