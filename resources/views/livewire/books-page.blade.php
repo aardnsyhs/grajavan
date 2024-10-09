@@ -74,16 +74,17 @@
                             <div class="relative flex flex-col h-full bg-white shadow-sm border border-slate-200 rounded-lg dark:bg-slate-900 dark:border-slate-800"
                                 wire:key="{{ $book->id }}">
                                 <div class="relative h-56 m-2.5 overflow-hidden text-white rounded-md">
-                                    <a href="/books/{{ $book->id }}">
+                                    <a wire:navigate href="/books/{{ $book->id }}">
                                         <img src="{{ url('storage', $book->image) }}" alt="{{ $book->title }}"
                                             class="object-contain w-full h-full" loading="lazy" />
                                     </a>
                                 </div>
                                 <div class="p-4 flex flex-col flex-grow">
                                     <div class="flex items-center mb-2">
-                                        <h6 class="text-slate-800 text-lg font-semibold dark:text-slate-200">
+                                        <a wire:navigate href="/books/{{ $book->id }}"
+                                            class="text-slate-800 text-lg font-semibold dark:text-slate-200 hover:underline">
                                             {{ $book->title }}
-                                        </h6>
+                                        </a>
                                         <div class="flex items-center gap-0.5 ml-auto">
                                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"
                                                 fill="currentColor" class="w-5 h-5 text-yellow-600">
