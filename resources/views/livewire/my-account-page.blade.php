@@ -1,4 +1,4 @@
-<section class="py-8 md:py-16 dark:bg-gray-900 antialiased">
+<section class="py-8 md:py-16 dark:bg-gray-700 antialiased">
     <div class="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6">
         <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">My Account</h2>
         @if (session()->has('message'))
