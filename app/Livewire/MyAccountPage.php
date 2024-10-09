@@ -75,6 +75,8 @@ class MyAccountPage extends Component
 
     public function render()
     {
-        return view('livewire.my-account-page');
+        return view('livewire.my-account-page', [
+            'user' => Auth::user(),
+        ]);
     }
 }
