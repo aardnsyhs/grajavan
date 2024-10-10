@@ -71,13 +71,6 @@
                                             class="bg-slate-600 text-white py-2 px-4 rounded-md hover:bg-slate-500">
                                             Lihat Detail
                                         </a>
-                                        @if ($order->status == 'delivered')
-                                            <button type="button" data-modal-target="review-modal"
-                                                data-modal-toggle="review-modal"
-                                                class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-500 ms-2">Berikan
-                                                Ulasan</button>
-                                            <livewire:product-review-modal :order="$order" />
-                                        @endif
                                     </td>
                                 </tr>
                             @endforeach

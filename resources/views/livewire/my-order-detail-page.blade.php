@@ -154,6 +154,15 @@
                                     <span class="text-center w-8">{{ $item->quantity }}</span>
                                 </td>
                                 <td class="py-4">{{ Number::currency($item->total_price, 'IDR') }}</td>
+                                <td class="py-4">
+                                    @if ($order->status == 'delivered')
+                                        <button type="button" data-modal-target="review-modal"
+                                            data-modal-toggle="review-modal"
+                                            class="bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-500 ms-2">Berikan
+                                            Ulasan</button>
+                                        <livewire:product-review-modal :order="$order" :bookId="$item->book->id" />
+                                    @endif
+                                </td>
                             </tr>
                         @endforeach
                     </tbody>
