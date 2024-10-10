@@ -1,9 +1,7 @@
 <div>
-    {{-- Hero Section --}}
     <div
         class="w-full h-screen bg-gradient-to-r from-blue-200 to-cyan-200 dark:from-slate-800 dark:to-slate-900 py-10 px-4 sm:px-6 lg:px-8 mx-auto">
         <div class="max-w-[85rem] mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Grid -->
             <div class="grid md:grid-cols-2 gap-4 md:gap-8 xl:gap-20 md:items-center">
                 <div>
                     <h1
@@ -11,8 +9,6 @@
                         Mulai perjalanan kamu dengan <span class="text-blue-600 dark:text-blue-400">Grajavan</span></h1>
                     <p class="mt-3 text-lg text-gray-800 dark:text-gray-300">Temukan beragam koleksi buku mulai dari
                         novel, biografi, buku anak, buku akademik, hingga literatur klasik dan banyak lagi.</p>
-
-                    <!-- Buttons -->
                     @guest
                         <div class="mt-7 grid gap-3 w-full sm:inline-flex">
                             <a wire:navigate
@@ -32,10 +28,7 @@
                             </a>
                         </div>
                     @endguest
-                    <!-- End Buttons -->
                 </div>
-
-                <!-- Image Section -->
                 <div class="relative ms-4">
                     <img class="w-full rounded-md"
                         src="https://static.vecteezy.com/system/resources/previews/011/993/278/non_2x/3d-render-online-shopping-bag-using-credit-card-or-cash-for-future-use-credit-card-money-financial-security-on-mobile-3d-application-3d-shop-purchase-basket-retail-store-on-e-commerce-free-png.png"
@@ -47,8 +40,6 @@
             </div>
         </div>
     </div>
-
-    {{-- Book Type Selection --}}
     <section class="py-20">
         <div class="max-w-xl mx-auto">
             <div class="text-center ">
@@ -89,8 +80,6 @@
             </div>
         </div>
     </section>
-
-    {{-- Categoties Selection --}}
     <div class="bg-white-200 py-20">
         <div class="max-w-xl mx-auto">
             <div class="text-center ">
@@ -145,14 +134,13 @@
             </div>
         </div>
     </div>
-
-    {{-- Customer  --}}
     <section class="py-14 font-poppins dark:bg-gray-800">
         <div class="max-w-6xl px-4 py-6 mx-auto lg:py-4 md:px-6">
             <div class="max-w-xl mx-auto">
                 <div class="text-center ">
                     <div class="relative flex flex-col items-center">
-                        <h1 class="text-5xl font-bold dark:text-gray-200"> Penilaian <span class="text-blue-500">Pembaca</span> </h1>
+                        <h1 class="text-5xl font-bold dark:text-gray-200"> Penilaian <span
+                                class="text-blue-500">Pembaca</span> </h1>
                         <div class="flex w-40 mt-2 mb-6 overflow-hidden rounded">
                             <div class="flex-1 h-2 bg-blue-200"></div>
                             <div class="flex-1 h-2 bg-blue-400"></div>
@@ -166,18 +154,21 @@
                 </div>
             </div>
             <div class="grid grid-cols-1 gap-6 lg:grid-cols-2 ">
-                @foreach($reviews as $review)
+                @foreach ($reviews as $review)
                     <div class="py-6 bg-white rounded-md shadow dark:bg-gray-900">
-                        <div class="flex flex-wrap items-center justify-between pb-4 mb-6 space-x-2 border-b dark:border-gray-700">
+                        <div
+                            class="flex flex-wrap items-center justify-between pb-4 mb-6 space-x-2 border-b dark:border-gray-700">
                             <div class="flex items-center px-6 mb-2 md:mb-0 ">
                                 <div class="flex mr-2 rounded-full">
-                                    <img src="{{ $review->user->profile_picture_url }}" alt="{{ $review->user->name }}"
-                                        class="object-cover w-12 h-12 rounded-full" loading="lazy">
+                                    <img src="{{ url('storage', $review->user->image) }}"
+                                        alt="{{ $review->user->name }}" class="object-cover w-12 h-12 rounded-full"
+                                        loading="lazy">
                                 </div>
                                 <div>
                                     <h2 class="text-lg font-semibold text-gray-900 dark:text-gray-300">
                                         {{ $review->user->name }}</h2>
-                                    <p class="text-xs text-gray-300 dark:text-gray-300">{{ $review->user->job_title }}</p> <!-- Pekerjaan user -->
+                                    <p class="text-xs text-gray-300 dark:text-gray-300">{{ $review->user->job_title }}
+                                    </p>
                                 </div>
                             </div>
                             <p class="px-6 text-base font-medium text-gray-600 dark:text-gray-300">
@@ -194,10 +185,10 @@
                                         <li>
                                             <a href="#">
                                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-                                                    fill="currentColor"
-                                                    class="w-4 mr-1 text-blue-500 bi bi-star-fill"
+                                                    fill="currentColor" class="w-4 mr-1 text-blue-500 bi bi-star-fill"
                                                     viewBox="0 0 16 16">
-                                                    <path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
+                                                    <path
+                                                        d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z">
                                                     </path>
                                                 </svg>
                                             </a>
