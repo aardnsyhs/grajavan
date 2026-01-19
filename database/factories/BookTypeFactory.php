@@ -10,12 +10,14 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class BookTypeFactory extends Factory
 {
-    protected $model = BookType::class;
+  protected $model = BookType::class;
 
-    public function definition()
-    {
-        return [
-            'name' => $this->faker->word,
-        ];
-    }
+  public function definition()
+  {
+    return [
+      'name' => $this->faker->word,
+      'image' => $this->faker->imageUrl(640, 480, 'books', true),
+      'is_active' => $this->faker->boolean(80),
+    ];
+  }
 }

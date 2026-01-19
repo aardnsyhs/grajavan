@@ -12,16 +12,19 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class OrderItemFactory extends Factory
 {
-    protected $model = \App\Models\OrderItem::class;
+  protected $model = \App\Models\OrderItem::class;
 
-    public function definition()
-    {
-        return [
-            'order_id' => Order::factory(),
-            'book_id' => Book::factory(),
-            'book_type_id' => BookType::factory(),
-            'quantity' => $this->faker->numberBetween(1, 5),
-            'price' => $this->faker->randomFloat(2, 50, 200),
-        ];
-    }
+  public function definition()
+  {
+    $quantity = $this->faker->numberBetween(1, 5);
+    $unitPrice = $this->faker->randomFloat(2, 50, 200);
+
+    return [
+      'order_id' => Order::factory(),
+      'book_id' => Book::factory(),
+      'quantity' => $quantity,
+      'unit_price' => $unitPrice,
+      'total_price' => $quantity * $unitPrice,
+    ];
+  }
 }

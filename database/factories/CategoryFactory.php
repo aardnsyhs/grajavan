@@ -10,12 +10,14 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 class CategoryFactory extends Factory
 {
-    protected $model = Category::class;
+  protected $model = Category::class;
 
-    public function definition()
-    {
-        return [
-            'name' => $this->faker->word,
-        ];
-    }
+  public function definition()
+  {
+    return [
+      'name' => $this->faker->word,
+      'image' => $this->faker->imageUrl(640, 480, 'categories', true),
+      'is_active' => $this->faker->boolean(80),
+    ];
+  }
 }
