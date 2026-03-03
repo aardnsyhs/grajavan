@@ -874,9 +874,9 @@ jiti@^1.21.6:
   integrity sha512-/imKNG4EbWNrVjoNC/1H5/9GFy+tqjGBHCaSsN+P2RnPqjsLmv6UD3Ej+Kj8nBWaRAwyk7kK5ZUc+OEatnTR3A==
 
 laravel-vite-plugin@^2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/laravel-vite-plugin/-/laravel-vite-plugin-2.0.0.tgz#6904e0733a43d9f9b9d8702f5d9f8aba60771bce"
-  integrity sha512-pnaKHInJgiWpG/g+LmaISHl7D/1s5wnOXnrGiBdt4NOs+tYZRw0v/ZANELGX2/dGgHyEzO+iZ6x4idpoK04z/Q==
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/laravel-vite-plugin/-/laravel-vite-plugin-2.1.0.tgz#88d8fed6d0e0bf9e09dc98b9d2b57ad29791e271"
+  integrity sha512-z+ck2BSV6KWtYcoIzk9Y5+p4NEjqM+Y4i8/H+VZRLq0OgNjW2DqyADquwYu5j8qRvaXwzNmfCWl1KrMlV1zpsg==
   dependencies:
     picocolors "^1.0.0"
     vite-plugin-full-reload "^1.1.0"
