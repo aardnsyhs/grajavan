@@ -19,7 +19,7 @@
         "laravel/tinker": "^2.8",
         "livewire/livewire": "^3.5",
         "midtrans/midtrans-php": "^2.6",
-        "stripe/stripe-php": "^15.10"
+        "stripe/stripe-php": "^19.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.13",
